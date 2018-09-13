@@ -1,0 +1,51 @@
+
+/*nav bar custom style*/
+
+.navbar-brand {
+    color: white;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+    text-align: center;
+}
+
+.nav-item {
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+}
+
+
+/*move over the mouse effect*/
+.nav-item:hover {
+    color: white;
+    transform: scale(1.1);
+    
+}
+
+.navbar-brand:hover {
+    color: white;
+    transform: scale(1.1); 
+}
+
+
+/*For footer styling*/
+
+.project-erd,
+.project-doc {
+    border: solid;
+    border-color: #fff;
+    padding: 2px 6px 2px 6px;
+    border-width: 1px;
+    margin: 2px;
+    border-radius: 10%;
+}
+
+
+.infofooter {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   padding-top: 10px;
+}

@@ -1,0 +1,212 @@
+body {
+    background-color: #F2F2F2;
+    box-sizing: border-box;
+    /*font-family: Verdana, Arial, Helvetica, sans-serif; */
+    font-weight: normal;
+    font-style: normal;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #4d4d4d;
+}
+
+.bg {
+    
+    background-color: tomato;
+}
+
+
+.nav-align-center {
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+}
+
+h2, .h2 {
+    color: #80ba27;
+    font-size: 26px;
+    letter-spacing: -1px;
+    line-height: 1.25;
+    margin: 20px 0;
+}
+
+h3, .h3 {
+    font-size: 20px;
+    letter-spacing: -0.5px;
+}
+
+
+/* unvisited link */
+a:link {
+    color: red;
+}
+
+/* visited link */
+a:visited {
+    color: tomato;
+}
+
+/* mouse over link */
+a:hover {
+    color: green;
+}
+
+/* selected link */
+a:active {
+    color: blue;
+}
+
+.jumbotron {
+    background: #fff;
+    border: 1px solid #ccc;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding: 19px 29px;
+}
+
+.page-title {
+    text-align: center;
+}
+
+.row {
+    padding-top: 1%;
+    text-align: center;
+}
+
+
+.user-image {
+    border-radius: 100%;
+}
+
+.rating {
+    font-size: 	0.875rem;
+    line-height: 25px;
+    margin-bottom: 1%;
+    color: grey;
+}
+
+.alert { 
+    font-weight: bold; 
+    font-style: italic; 
+    color: red;
+    
+}
+
+
+.product-description {
+    text-align: left;
+    margin-top: 1.5%;
+    font-size: 14px;
+}
+
+
+blockquote, .blockquote {
+    font-size: 0.875rem;
+    
+}
+
+.site-location {
+    /*margin-left: 16px;*/
+    /*margin-right: 16px;*/
+    margin-bottom: 1.6875rem;
+}
+
+
+.crud-button {
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+.submit {
+    margin-bottom: 15px;
+}
+
+
+#myBtn {
+    /* display: none; Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 85px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: tomato; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+
+/*.outer {*/
+/*  overflow: hidden;*/
+/*  position: relative;*/
+/*}*/
+/*.inner {*/
+/*  position: absolute;*/
+/*  height: 100px;*/
+/*  width: 100px;*/
+/*  right: -50px;*/
+/*  top: 50px;*/
+/*}*/
+
+.answer {
+    background-color: #f2f2f2;
+    margin-top: 10px;
+    padding: 8px 20px;
+}
+
+.pic {
+    border: solid;
+}
+
+.detail {
+    border: solid;
+}
+
+
+@media (min-width: 320px) {
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    
+    
+    .details {
+        text-align: left;
+        
+    }
+
+    .reviews {
+        border-left: 5px solid #80ba27;
+        margin-left: -30px;
+        padding-left: 25px;
+        padding-right: 25px;
+        font-size: 14px;
+    }
+    
+    .product-pics-thumbnail {
+        width: auto;
+        max-height: 165px;
+}
+ 
+    
+}
+
+@media (max-width: 319px) {
+    .items {
+        
+        font-size: 5;
+    
+    }
+    
+    
+}
+
+.test {
+    border: solid;
+}
+
