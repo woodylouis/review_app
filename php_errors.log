@@ -1,0 +1,14 @@
+[02-Aug-2018 01:06:25 UTC] PHP Parse error:  syntax error, unexpected '.', expecting '&' or variable (T_VARIABLE) in /home/ubuntu/workspace/blank/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 444
+[02-Aug-2018 01:06:25 UTC] PHP Stack trace:
+[02-Aug-2018 01:06:25 UTC] PHP   1. {main}() /home/ubuntu/workspace/blank/public/index.php:0
+[02-Aug-2018 01:06:25 UTC] PHP   2. require() /home/ubuntu/workspace/blank/public/index.php:22
+[02-Aug-2018 01:06:25 UTC] PHP   3. require() /home/ubuntu/workspace/blank/bootstrap/autoload.php:17
+[02-Aug-2018 01:06:25 UTC] PHP   4. ComposerAutoloaderInitcd603a91499b38fd173a57e85b0ef9aa::getLoader() /home/ubuntu/workspace/blank/vendor/autoload.php:7
+[02-Aug-2018 01:06:25 UTC] PHP   5. composerRequirecd603a91499b38fd173a57e85b0ef9aa() /home/ubuntu/workspace/blank/vendor/composer/autoload_real.php:56
+[02-Aug-2018 01:06:37 UTC] PHP Parse error:  syntax error, unexpected '.', expecting '&' or variable (T_VARIABLE) in /home/ubuntu/workspace/blank/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php on line 444
+[02-Aug-2018 01:06:37 UTC] PHP Stack trace:
+[02-Aug-2018 01:06:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/blank/public/index.php:0
+[02-Aug-2018 01:06:37 UTC] PHP   2. require() /home/ubuntu/workspace/blank/public/index.php:22
+[02-Aug-2018 01:06:37 UTC] PHP   3. require() /home/ubuntu/workspace/blank/bootstrap/autoload.php:17
+[02-Aug-2018 01:06:37 UTC] PHP   4. ComposerAutoloaderInitcd603a91499b38fd173a57e85b0ef9aa::getLoader() /home/ubuntu/workspace/blank/vendor/autoload.php:7
+[02-Aug-2018 01:06:37 UTC] PHP   5. composerRequirecd603a91499b38fd173a57e85b0ef9aa() /home/ubuntu/workspace/blank/vendor/composer/autoload_real.php:56
