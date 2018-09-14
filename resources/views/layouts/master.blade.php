@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="{{secure_asset('css/master.css')}}">
     <link rel="stylesheet" href="{{secure_asset('css/navCustom.css')}}">
     
-
   </head>
   
   <body>
