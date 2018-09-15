@@ -4,7 +4,7 @@
 
 <nav class="navbar navbar-expand-md bg navbar-dark sticky-top">
    <!--Brand -->
-  <a class="navbar-brand" href="/">Product Reviews</a>
+  <a class="navbar-brand" href="/product">Product Reviews</a>
 
    <!--Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -21,7 +21,7 @@
         <a class="nav-link nav-item" href="/writeReview">Write a review</a>
       </li>
       <li class="nav-item nav-align-center">
-        <a class="nav-link nav-item" href="/add-product">Add a Product</a>
+        <a class="nav-link nav-item" href="/product/create">Add a Product</a>
       </li> 
       <li class="nav-item nav-align-center">
         <a class="nav-link nav-item" href="#">Sign in</a>

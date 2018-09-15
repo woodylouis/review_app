@@ -1,5 +1,7 @@
 <?php
-
+use App\Product;
+use App\Manufacturer;
+use App\Country;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,5 +13,13 @@
 |
 */
 
+Route::resource('product', 'ProductController');
+
+
 Route::get('/', function () {return view('home'); });
 
+Route::get('/test', function () {
+    $product = Product::all();
+    dd($product);
+    
+});

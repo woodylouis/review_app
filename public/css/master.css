@@ -1,6 +1,5 @@
 body {
     background-color: #F2F2F2;
-    box-sizing: border-box;
     /*font-family: Verdana, Arial, Helvetica, sans-serif; */
     font-weight: normal;
     font-style: normal;
@@ -8,11 +7,21 @@ body {
     font-size: 14px;
     line-height: 1.42857143;
     color: #4d4d4d;
+    min-height:100%; 
+    position:relative; 
+    padding-bottom: 50px; 
+
 }
+
+html {
+  height: 100%;
+  margin: 0;
+}
+
 
 .bg {
     
-    background-color: tomato;
+    background-color: #009d57;
 }
 
 
@@ -169,10 +178,7 @@ blockquote, .blockquote {
 
 
 @media (min-width: 320px) {
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
+
     
     
     .details {
@@ -210,3 +216,7 @@ blockquote, .blockquote {
     border: solid;
 }
 
+.footer { 
+    position: absolute; 
+    left: 0 ; right: 0; bottom: 0; 
+}
