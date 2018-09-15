@@ -15,14 +15,19 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item nav-align-center">
-        <a class="nav-link nav-item" href="/manufacturers">Browse Manufacturers</a>
+        <a class="nav-link nav-item" href="/manufacturer">Browse Manufacturers</a>
       </li>
       <li class="nav-item nav-align-center">
-        <a class="nav-link nav-item" href="/writeReview">Write a review</a>
+        <a class="nav-link nav-item" href="/writeReview">Write a Review</a>
       </li>
       <li class="nav-item nav-align-center">
         <a class="nav-link nav-item" href="/product/create">Add a Product</a>
+      </li>
+      
+      <li class="nav-item nav-align-center">
+        <a class="nav-link nav-item" href="/manufacturer/create">Create a Manufacturer</a>
       </li> 
+      
       <li class="nav-item nav-align-center">
         <a class="nav-link nav-item" href="#">Sign in</a>
       </li> 

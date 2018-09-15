@@ -43,6 +43,10 @@ h3, .h3 {
     letter-spacing: -0.5px;
 }
 
+h4, .h4 {
+    font-size: 16px;
+    text-align: left;
+}
 
 /* unvisited link */
 a:link {
@@ -181,10 +185,32 @@ blockquote, .blockquote {
 
     
     
-    .details {
+    .details, .brand {
         text-align: left;
-        
     }
+    
+ 
+    
+    .brand a {
+        color: black;
+        padding-left: 10px;
+    }
+    
+    .brand li:hover {
+        background-color: #009d57;
+        list-style-position:inside;
+        border: 1px solid #23A265;
+        border-radius: 5px;
+        text-decoration: none;
+
+    }
+    
+    .brand li:hover a {
+        color: white;
+        text-decoration: none;
+
+    }
+
 
     .reviews {
         border-left: 5px solid #80ba27;
@@ -204,9 +230,7 @@ blockquote, .blockquote {
 
 @media (max-width: 319px) {
     .items {
-        
         font-size: 5;
-    
     }
     
     
