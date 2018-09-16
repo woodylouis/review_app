@@ -44,7 +44,9 @@ class ProductController extends Controller
         $this->validate($request,[
                 "product_name" => "required | max:100",
                 "product_description" => "required | max:1000",
-                "price" => "required | numeric | min:0"
+                "price" => "required | numeric | min:0",
+                'manufacturer' =>'exists:manufacturers,id'
+
             ]);
         
         
@@ -99,7 +101,9 @@ class ProductController extends Controller
         $this->validate($request,[
             "product_name" => "required | max:100",
             "product_description" => "required | max:1000",
-            "price" => "required | numeric | min:0"
+            "price" => "required | numeric | min:0",
+            'manufacturer' =>'exists:manufacturers,id'
+
         ]);
         
         $product = Product::find($id);
