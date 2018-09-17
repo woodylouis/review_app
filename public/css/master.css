@@ -1,21 +1,34 @@
 body {
-    background-color: #F2F2F2;
-    /*font-family: Verdana, Arial, Helvetica, sans-serif; */
-    font-weight: normal;
+    background-color: #f5f8fa;
+    
     font-style: normal;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 14px;
-    line-height: 1.42857143;
-    color: #4d4d4d;
+    line-height: 1.6;
     min-height:100%; 
     position:relative; 
     padding-bottom: 50px; 
+    border-color: #d3e0e9;
+    
 
+}
+
+label {
+    font-weight: 700;
 }
 
 html {
   height: 100%;
   margin: 0;
+}
+
+
+html, body {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+}
+
+strong {
+    font-weight: 800;
 }
 
 
@@ -187,6 +200,7 @@ blockquote, .blockquote {
     
     .details, .brand {
         text-align: left;
+        min-height: 240px;
     }
     
  
@@ -238,6 +252,7 @@ blockquote, .blockquote {
 
 .test {
     border: solid;
+    min-height: 400px;
 }
 
 .footer { 

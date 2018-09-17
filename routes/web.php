@@ -17,10 +17,18 @@ Route::resource('product', 'ProductController');
 Route::resource('manufacturer', 'ManufacturerController');
 
 
-Route::get('/', function () {return view('home'); });
+// Route::get('/', function () {return view('home'); });
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
 
 Route::get('/test', function () {
     $product = Product::all();
     dd($product);
     
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

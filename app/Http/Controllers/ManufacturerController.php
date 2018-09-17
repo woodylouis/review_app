@@ -10,6 +10,10 @@ use DB;
 
 class ManufacturerController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -25,14 +29,14 @@ class ManufacturerController extends Controller
         //             ->groupBy('manufacturer_id')
         //             ->get();
         //dd($product_counts);
-        $product_counts = Product::with('manufacturer')
-                        ->select(DB::raw('count(id) as total'))
-                        ->groupBy('manufacturer_id')
-                        ->get();
+        // $product_counts = Product::with('manufacturer')
+        //                 ->select(DB::raw('count(id) as total'))
+        //                 ->groupBy('manufacturer_id')
+        //                 ->get();
         //dd($product_counts);
         $products = Product::all();
         
-        return view('manufacturers.index', ['manufacturers' => $manufacturers, 'products' => $products, '$product_counts' => $product_counts]);
+        return view('manufacturers.index', ['manufacturers' => $manufacturers, 'products' => $products]);
     }
     /**
      * Show the form for creating a new resource.
@@ -42,6 +46,7 @@ class ManufacturerController extends Controller
     public function create()
     {
         //
+        return view('manufacturers.create_form')->with('manufacturers', Manufacturer::all())->with('countries', Country::all());
     }
 
     /**
@@ -53,6 +58,18 @@ class ManufacturerController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+                "manufacturer_name" => "required | max:100",
+                'country' =>'exists:countries,id'
+
+        ]);
+        
+        $manufacturer = new Manufacturer();
+        $manufacturer->manufacturer_name = $request->manufacturer_name;
+        $manufacturer->country_id = $request->country;
+        $manufacturer->save();
+        return redirect("/");
+        
     }
 
     /**
@@ -64,8 +81,16 @@ class ManufacturerController extends Controller
     public function show($id)
     {
         //
+        $manufacturer = Manufacturer::find($id);
+        $products = Product::where('manufacturer_id','=',$id)->get();
+        // dd($manufacturer);
+        // $country = Country::all();
+        return view('manufacturers.show', ['manufacturer' => $manufacturer, 'products' => $products]);
     }
-
+    
+// $result = Post::whereId($id)->get();
+//         $comments = Comment::where('post_id','=',$id)->orderBy('created_at','desc')->paginate(6);
+//         return view('showPost', ['result'=>$result, 'comments'=>$comments]);
     /**
      * Show the form for editing the specified resource.
      *

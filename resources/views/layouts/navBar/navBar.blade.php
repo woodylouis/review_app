@@ -14,6 +14,11 @@
    <!--Navbar links -->
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav ml-auto">
+      
+      @if (Auth::guest())
+        <li><a class="nav-link nav-item" href="{{ route('login') }} ">Login</a></li>
+        <li><a class="nav-link nav-item" href="{{ route('register') }}">Register</a></li>
+      @else 
       <li class="nav-item nav-align-center">
         <a class="nav-link nav-item" href="/manufacturer">Browse Manufacturers</a>
       </li>
@@ -28,12 +33,35 @@
         <a class="nav-link nav-item" href="/manufacturer/create">Create a Manufacturer</a>
       </li> 
       
-      <li class="nav-item nav-align-center">
-        <a class="nav-link nav-item" href="#">Sign in</a>
-      </li> 
+
+      
+      <li class="dropdown nav-item nav-align-center">
+          <a href="#" class="dropdown-toggle nav-link nav-item" data-toggle="dropdown" role="button" aria-expanded="false">
+              {{ Auth::user()->name }} <span class="caret"></span>
+          </a>
+          
+
+          <ul class="dropdown-menu" role="menu">
+              <li>
+                  <a href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                      Logout
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      {{ csrf_field() }}
+                  </form>
+              </li>
+          </ul>
+      </li>
+      
       <li class="nav-item nav-link nav-align-center">
         <img src="https://api.adorable.io/avatars/285/abott@adorable.png" class="user-image" alt="profile-img" width="38" height="38">
       </li>
+      
+      
+      @endif    
     </ul>
   </div> 
 </nav>

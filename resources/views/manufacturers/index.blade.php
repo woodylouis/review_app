@@ -21,7 +21,7 @@
                     <ul class="brand list-unstyled">
                     @foreach ($manufacturers as $manufacturer)
                         <div>
-                            <li class = "py-2"><a href="#">{{ $manufacturer -> manufacturer_name }}</a></li>
+                            <li class = "py-2"><a href="{{url("manufacturer/$manufacturer->id")}}">{{ $manufacturer -> manufacturer_name }}</a></li>
                         </div>
                     @endforeach
                     </ul>
@@ -31,8 +31,10 @@
                 </div>
         
                 <div class="col-sm">
+                  <h2 class='text-left'>All Products</h2>
+                  
                   @foreach ($products as $product)
-                  <div class="mb-2 bg-white row">
+                  <div class="mb-2 bg-white row shadow rounded items details">
                     <div class="col-md-2 d-none d-md-block py-2">
                       <img src="{{ asset('images/iphonexs.png') }}" alt="iphonexs" class="product-pics-thumbnail">
                     </div>
