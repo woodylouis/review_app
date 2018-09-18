@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     
     public function __construct() {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'create', 'store']]);
     }
     /**
      * Display a listing of the resource.
@@ -46,7 +46,7 @@ class ProductController extends Controller
         //
         
         $this->validate($request,[
-                "product_name" => "required | max:100",
+                "product_name" => "required | max:100 | unique:products",
                 "product_description" => "required | max:1000",
                 "price" => "required | numeric | min:0",
                 'manufacturer' =>'exists:manufacturers,id'
@@ -103,11 +103,10 @@ class ProductController extends Controller
         //
         
         $this->validate($request,[
-            "product_name" => "required | max:100",
+            "product_name" => "required | max:100 | unique:products",
             "product_description" => "required | max:1000",
             "price" => "required | numeric | min:0",
             'manufacturer' =>'exists:manufacturers,id'
-
         ]);
         
         $product = Product::find($id);

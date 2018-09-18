@@ -59,7 +59,7 @@ class ManufacturerController extends Controller
     {
         //
         $this->validate($request,[
-                "manufacturer_name" => "required | max:100",
+                "manufacturer_name" => "required | max:100 | unique:manufacturers",
                 'country' =>'exists:countries,id'
 
         ]);
@@ -68,7 +68,7 @@ class ManufacturerController extends Controller
         $manufacturer->manufacturer_name = $request->manufacturer_name;
         $manufacturer->country_id = $request->country;
         $manufacturer->save();
-        return redirect("/");
+        return redirect("/product/create");
         
     }
 
@@ -87,7 +87,6 @@ class ManufacturerController extends Controller
         // $country = Country::all();
         return view('manufacturers.show', ['manufacturer' => $manufacturer, 'products' => $products]);
     }
-    
 // $result = Post::whereId($id)->get();
 //         $comments = Comment::where('post_id','=',$id)->orderBy('created_at','desc')->paginate(6);
 //         return view('showPost', ['result'=>$result, 'comments'=>$comments]);
