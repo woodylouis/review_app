@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    function products() {
+        return $this -> belongsToMany('App\Product', 'reviews')->withPivot('rating')->withPivot('title')->withPivot('review_detail')->withTimestamps();
+    }
+    
 }

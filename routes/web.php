@@ -2,6 +2,7 @@
 use App\Product;
 use App\Manufacturer;
 use App\Country;
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,8 +27,18 @@ Route::get('/', function () {
 
 
 Route::get('/test', function () {
-    $product = Product::all();
-    dd($product);
+    // $user = User::find(1);
+    // $products = $user->products;
+    // //dd($products);
+    // $name = 'Apple';
+    // $prods = $user->products()->whereRaw('product_name like ?', 
+    //                 array("%$name%")) -> get();
+    // $product = Product::find(1);
+    // $review = $product ->users;
+    // $name = $input['name'];
+    // $products = Product::whereHas('manufacturers', function($query) use ($name){return $query->whereRaw('manufacturer_name like ?', array("%$name%"));})->get();
+    
+    // dd($products);
     
 });
 Auth::routes();

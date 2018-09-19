@@ -71,14 +71,12 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        //This is to show products' details such as product name, price, place of origin, manufacturers etc
         $product = Product::find($id);
-        $review = Review::where('product_id','=',$id);
-        dd($review);
-        
-        // dd($manufacturer);
-        // $country = Country::all();
-        return view('products.show', ['product' => $product]);
+        //This is to show review details such as author, title, review content, rating etc for each product
+        $reviews = $product->users;
+        // dd($reviews);
+        return view('products.show', ['product' => $product, 'reviews' => $reviews]);
     }
 
     /**

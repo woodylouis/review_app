@@ -17,7 +17,7 @@ class ReviewTableSeeder extends Seeder
             'review_detail' => 'Good to have a wider key pad again, unrestricted by the roll off edges of the S8+ which seemed like wasted screen space and lacking functionality.',
             'rating' => 5,
             'user_id' => 1,
-            'product_id' => 4,
+            'product_id' => 1,
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
         ]);
         //P20 Pro
@@ -26,7 +26,7 @@ class ReviewTableSeeder extends Seeder
             'review_detail' => 'If you are iPhone fan then no choice but I am not. So checked all double SIM phones and decided P20 Pro because I know Huawei is good value for money, good product (but not so user-friendly software)',
             'rating' => 3,
             'user_id' => 1,
-            'product_id' => 4,
+            'product_id' => 2,
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
         ]);
         //P20 Pro
@@ -35,15 +35,15 @@ class ReviewTableSeeder extends Seeder
             'review_detail' => 'OK so I have reviewed the iPhone X which died after a little rainwater and because of my disgust at the resolution from Apple led me to leave Apple and buy a brand I did not even know made smartphones.',
             'rating' => 3,
             'user_id' => 1,
-            'product_id' => 4,
+            'product_id' => 5,
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
         ]);
         //P20 Pro
         DB::table('reviews')->insert([
-            'title' => '',
-            'review_detail' => '',
+            'title' => 'Happy with my P20',
+            'review_detail' => 'Have been really happy with the P20 over the last 12 months',
             'rating' => 4,
-            'user_id' => 2,
+            'user_id' => 1,
             'product_id' => 4,
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
         ]);

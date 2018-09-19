@@ -25,7 +25,20 @@
         @endif
     </div>
     
-    <div class="product-review">
+    <div>
+        <h2>Review</h2>
         
+        @foreach ($reviews as $review)
+            <div class="row no-gutters text-left product-review">
+                    <div class="col-6 col-md-2 list-unstyled">
+                        <li><a href='#'>{{$review->name}}</a></li>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-10 list-unstyled">
+                        <li>{{$review -> pivot -> title}}</li>
+                        <li>Rating: {{$review -> pivot -> rating}} of 5, on {{$review -> pivot -> created_at}}</li>
+                        <li>{{$review -> pivot -> review_detail}}</li>
+                    </div>
+            </div>
+        @endforeach
     </div>
 @endsection

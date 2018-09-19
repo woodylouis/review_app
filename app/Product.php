@@ -11,12 +11,13 @@ class Product extends Model
     
     // a product should have a manufacturer
     function manufacturer() {
-        return $this->belongsTo('App\Manufacturer', 'manufacturer_id');
+        return $this->belongsTo('App\Manufacturer');
     }
     
-    // a product could have many reviews
-    function reviews() {
-        return $this->hasMany('App\Review')
+   
+    function users() {
+        return $this -> belongsToMany('App\User', 'reviews')->withPivot('rating')->withPivot('title')->withPivot('review_detail')->withTimestamps();
+
     }
 
 }

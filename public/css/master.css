@@ -194,6 +194,11 @@ blockquote, .blockquote {
 }
 
 
+.product-review {
+    border-top: 1px solid #e6e6e6;
+    padding: 20px 0;
+}
+
 @media (min-width: 320px) {
 
     
