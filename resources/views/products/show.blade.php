@@ -6,7 +6,7 @@
 
 @section('content')
     <h1>{{$product->product_name}}</h1>
-    <div>
+    <div class="product-detail">
         <p><em>Updated at {{$product->updated_at}}</em></p>
         <p>Brand: <strong>{{$product->manufacturer->manufacturer_name}}</strong></p>
         <p>Origin of Country: <strong>{{$product->manufacturer->country->country}}</strong></p>
@@ -23,5 +23,9 @@
                 </form>
             </p>
         @endif
+    </div>
+    
+    <div class="product-review">
+        
     </div>
 @endsection

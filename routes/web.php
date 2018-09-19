@@ -15,6 +15,7 @@ use App\Country;
 
 Route::resource('product', 'ProductController');
 Route::resource('manufacturer', 'ManufacturerController');
+Route::resource('review', 'ReviewController');
 
 
 // Route::get('/', function () {return view('home'); });

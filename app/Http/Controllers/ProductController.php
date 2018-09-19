@@ -73,6 +73,9 @@ class ProductController extends Controller
     {
         //
         $product = Product::find($id);
+        $review = Review::where('product_id','=',$id);
+        dd($review);
+        
         // dd($manufacturer);
         // $country = Country::all();
         return view('products.show', ['product' => $product]);
