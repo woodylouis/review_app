@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use App\Manufacturer;
+use App\Country;
 
 class ReviewController extends Controller
 {
@@ -24,7 +27,12 @@ class ReviewController extends Controller
     public function create()
     {
         //
+        $products = Product::all();
+        $manufacturers = Manufacturer::all();
+        // dd($products);
+        return view('reviews.create_form', ['products'=> $products, 'manufacturers' => $manufacturers]);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -57,6 +65,8 @@ class ReviewController extends Controller
     public function edit($id)
     {
         //
+        return view('reviews.edit_form');
+
     }
 
     /**

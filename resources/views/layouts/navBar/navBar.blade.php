@@ -16,6 +16,7 @@
     <ul class="navbar-nav ml-auto">
       <!--Guest only can see links for add products, login and register-->
       @if (Auth::guest())
+        <li class="nav-item nav-align-center"><a class="nav-link nav-item" href="/manufacturer">Browse Manufacturers</a></li>
         <li class="nav-item nav-align-center"><a class="nav-link nav-item" href="/product/create">Add a Product</a></li>
         <li class="nav-item nav-align-center"><a class="nav-link nav-item" href="{{ route('login') }} ">Login</a></li>
         <li class="nav-item nav-align-center"><a class="nav-link nav-item" href="{{ route('register') }}">Register</a></li>
@@ -25,7 +26,7 @@
         <a class="nav-link nav-item" href="/manufacturer">Browse Manufacturers</a>
       </li>
       <li class="nav-item nav-align-center">
-        <a class="nav-link nav-item" href="/writeReview">Write a Review</a>
+        <a class="nav-link nav-item" href="/review/create">Write a Review</a>
       </li>
       <li class="nav-item nav-align-center">
         <a class="nav-link nav-item" href="/product/create">Add a Product</a>

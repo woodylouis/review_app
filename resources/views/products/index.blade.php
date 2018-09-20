@@ -35,7 +35,7 @@
           <ul class="list-unstyled">
             
               <li class="list-item col-md py-2"><a href="{{url("product/$product->id")}}">{{ $product->product_name }}</a></li>
-              <li class="list-item col-md py-2"> Rating: <strong>5</strong> from <a href="productid">5 reviews</a></li>
+              <li class="list-item col-md py-2"> Rating: <strong>5</strong> from <a href="{{url("product/$product->id")}}#review">5 reviews</a></li>
               <li class="list-item col-md py-2 product-description"><p>{{ $product->product_description }}</p></li>
             
           </ul>

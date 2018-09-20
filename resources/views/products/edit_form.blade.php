@@ -21,9 +21,9 @@
         {{csrf_field()}}
         {{ method_field('PUT') }}
             <label>Name:</label>
-            <input type="text" name="product_name" class="form-control" value="{{$product->product_name}}"><br>
+            <input type="text" name="product_name" class="form-control" value="{{$product->product_name, old('product_name')}}"><br>
             <label>Price:</label>
-            <input type="text" name="price" class="form-control" value="{{$product->price}}"><br>
+            <input type="text" name="price" class="form-control" value="{{$product->price ,old('product_name')}}"><br>
             <label>Manufacturer:</label>
             <select name="manufacturer" class="form-control">
             @foreach ($manufacturers as $manufacturer)
