@@ -14,10 +14,12 @@ class Product extends Model
         return $this->belongsTo('App\Manufacturer');
     }
     
+    // function reviews() {
+    //     return $this->hasMany('App\Review');
+    // }
    
     function users() {
-        return $this -> belongsToMany('App\User', 'reviews')->withPivot('rating')->withPivot('title')->withPivot('review_detail')->withTimestamps();
-
+        return $this -> belongsToMany('App\User', 'reviews')->withPivot('id')->withPivot('rating')->withPivot('title')->withPivot('review_detail')->withTimestamps();
     }
 
 }

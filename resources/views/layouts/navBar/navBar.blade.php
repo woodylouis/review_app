@@ -21,7 +21,7 @@
         <li class="nav-item nav-align-center"><a class="nav-link nav-item" href="{{ route('login') }} ">Login</a></li>
         <li class="nav-item nav-align-center"><a class="nav-link nav-item" href="{{ route('register') }}">Register</a></li>
       <!--Moderator can see all links-->
-      @elseif (Auth::check() && Auth::user()->name == 'Moderator')
+      @elseif (Auth::check() && Auth::user()->isAdmin())
       <li class="nav-item nav-align-center">
         <a class="nav-link nav-item" href="/manufacturer">Browse Manufacturers</a>
       </li>

@@ -11,16 +11,16 @@ class ReviewTableSeeder extends Seeder
      */
     public function run()
     {
-        //P20 Pro
+        //iphone xs max
         DB::table('reviews')->insert([
-            'title' => 'Great phone, worth the switch from Samsung S8+',
+            'title' => 'Great iphone xs MAX, worth the switch from Samsung S8+',
             'review_detail' => 'Good to have a wider key pad again, unrestricted by the roll off edges of the S8+ which seemed like wasted screen space and lacking functionality.',
             'rating' => 5,
             'user_id' => 1,
             'product_id' => 1,
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
         ]);
-        //P20 Pro
+        //iphone xs
         DB::table('reviews')->insert([
             'title' => 'Excellent Night Photo',
             'review_detail' => 'If you are iPhone fan then no choice but I am not. So checked all double SIM phones and decided P20 Pro because I know Huawei is good value for money, good product (but not so user-friendly software)',
@@ -29,7 +29,7 @@ class ReviewTableSeeder extends Seeder
             'product_id' => 2,
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
         ]);
-        //P20 Pro
+       
         DB::table('reviews')->insert([
             'title' => 'Great Phone, Great Features, Reasonable Price.',
             'review_detail' => 'OK so I have reviewed the iPhone X which died after a little rainwater and because of my disgust at the resolution from Apple led me to leave Apple and buy a brand I did not even know made smartphones.',
@@ -38,7 +38,7 @@ class ReviewTableSeeder extends Seeder
             'product_id' => 5,
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
         ]);
-        //P20 Pro
+        // 
         DB::table('reviews')->insert([
             'title' => 'Happy with my P20',
             'review_detail' => 'Have been really happy with the P20 over the last 12 months',
@@ -47,7 +47,7 @@ class ReviewTableSeeder extends Seeder
             'product_id' => 4,
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
         ]);
-        //P20 Pro
+        //
         DB::table('reviews')->insert([
             'title' => 'Reasonable Price',
             'review_detail' => 'This phone has a 40 megapixel camera and I must say even on the 10 megapixlel setting takes wonderful images, even in low light and especially at macro distance.',
@@ -57,7 +57,7 @@ class ReviewTableSeeder extends Seeder
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
         ]);
         
-        //iPhone Xs Max
+        
         DB::table('reviews')->insert([
             'title' => 'Happy with my iPhone Xs MAX',
             'review_detail' => 'Have been really happy with the iPhone X over the last 12 months. Took me a while to get used to a few upgrades but that was more of software upgrades.',

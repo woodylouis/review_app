@@ -28,6 +28,7 @@ class UserTableSeeder extends Seeder
             'name' => 'Moderator',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('123456'),
+            'type' => 'admin',
         ]);
     }
 }

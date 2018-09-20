@@ -56,10 +56,10 @@
                         @if((Auth::check() && Auth::user()->name == 'Moderator') | (Auth::check() && Auth::user()->id == $review -> pivot -> user_id))
                             <div class="text-right">
                                 <div class="d-inline-block" data-toggle="tooltip" data-placement="top" title="Edit Product">
-                                    <a href="/review/{{$review->id}}/edit"><img src="{{ asset('open-iconic/svg/pencil.svg') }}" alt="icon edit" width='15' height='15'></a>
+                                    <a href="/review/{{$review -> pivot -> id}}/edit"><img src="{{ asset('open-iconic/svg/pencil.svg') }}" alt="icon edit" width='15' height='15'></a>
                                 </div>
                                 <div class="d-inline-block" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <form method="POST" action="/review/{{$review->id}}">
+                                        <form method="POST" action="/review/{{$review -> pivot -> id}}">
                                             {{csrf_field()}}
                                             {{ method_field('DELETE') }}
                                             <!--<input type="submit" value="Delete" class="btn bg text-light">-->

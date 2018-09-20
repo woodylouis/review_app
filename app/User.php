@@ -9,6 +9,12 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    //Two users types
+    //Construct admin type refer to https://medium.com/employbl/easily-build-administrator-login-into-a-laravel-5-app-8a942e4fef37
+    use Notifiable;
+    const ADMIN_TYPE = 'admin';
+    const DEFAULT_TYPE = 'default';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -29,6 +35,14 @@ class User extends Authenticatable
     
     function products() {
         return $this -> belongsToMany('App\Product', 'reviews')->withPivot('rating')->withPivot('title')->withPivot('review_detail')->withTimestamps();
+    }
+    
+    function reviewers() {}
+    
+    
+    public function isAdmin()
+    {
+        return $this->type === self::ADMIN_TYPE;
     }
     
 }
