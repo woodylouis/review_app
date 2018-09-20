@@ -15,6 +15,9 @@
         
         @if(Auth::check() && Auth::user()->name == 'Moderator')
             <div class="text-right">
+                <div class="d-inline-block" data-toggle="tooltip" data-placement="top" title="Write review">
+                    <a href="/product/{{$product->id}}#review-form"><img src="{{ asset('open-iconic/svg/plus.svg') }}" alt="icon edit" width='15' height='15'>Add review</a>
+                </div>
                 <div class="d-inline-block" data-toggle="tooltip" data-placement="top" title="Edit Product">
                     <a href="/product/{{$product->id}}/edit"><img src="{{ asset('open-iconic/svg/pencil.svg') }}" alt="icon edit" width='15' height='15'></a>
                 </div>
@@ -29,19 +32,18 @@
                         </form>
                 </div>
             </div>
+        @elseif(Auth::check() && Auth::user())
+            <div class="text-right" data-toggle="tooltip" data-placement="top" title="Write review">
+                <a href="/product/{{$product->id}}#review-form">Add review</a>
+            </div>
         @endif
     </div>
     
-    
-    <div class="text-right" >
-        
-    </div>
     
     
     
     <div id='review'>
         <h2>Review</h2>
-        
         @foreach ($reviews as $review)
             <div class="row no-gutters text-left product-review">
                     <div class="col-6 col-md-2 list-unstyled">
@@ -55,7 +57,8 @@
                         <!--This line of code allows admin to access all edit or delete action but the particular users can edit or delete their own reviews-->
                         @if((Auth::check() && Auth::user()->name == 'Moderator') | (Auth::check() && Auth::user()->id == $review -> pivot -> user_id))
                             <div class="text-right">
-                                <div class="d-inline-block" data-toggle="tooltip" data-placement="top" title="Edit Product">
+
+                                <div class="d-inline-block" data-toggle="tooltip" data-placement="top" title="Edit Review">
                                     <a href="/review/{{$review -> pivot -> id}}/edit"><img src="{{ asset('open-iconic/svg/pencil.svg') }}" alt="icon edit" width='15' height='15'></a>
                                 </div>
                                 <div class="d-inline-block" data-toggle="tooltip" data-placement="top" title="Delete">
@@ -74,8 +77,68 @@
                     </div>
                     
             </div>
-            
-
         @endforeach
+        
+        
+        @if(Auth::check() && Auth::user())
+            <div id="review-form">
+            <h2>Write a Review for {{$product->product_name}}</h2>    
+                <div class="product-review">
+                    <div class="panel-body">
+                    
+                        <form class="form-horizontal" method="POST" action="/review">
+                        {{ csrf_field() }}
+                            <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+                                <label for="title" class="col-md-4 control-label">Title of your review</label>
+                                
+                                <div class="col-md-12">
+                                    <input id="title" type="text" class="form-control" name="title" placeholder="Example: This is perfect!!" value="{{ old('title') }}" required>
+                                    @if ($errors->has('title'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('title') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <label for="rating" class="col-md-4 control-label">rating</label>
+                                
+                                <div class="col-md-12">
+                                    <input id="rating" type="rating" class="form-control" name="rating" value="{{ old('rating') }}" placeholder="1-5" min="1" max="5" required>
+                                
+                                    @if ($errors->has('rating'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('rating') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group{{ $errors->has('review_detail') ? ' has-error' : '' }}">
+                                <label for="review_detail" class="col-md-4 control-label">Your review</label>
+                                
+                                <div class="col-md-12">
+                                <textarea id="review_detail" rows='5' type="review_detail" class="form-control" name="review_detail" value="{{ old('review_detail') }}" required></textarea>
+                                
+                                @if ($errors->has('review_detail'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('review_detail') }}</strong>
+                                    </span>
+                                @endif
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <button type="submit" class="btn bg btn-primary">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endif
+        
     </div>
 @endsection

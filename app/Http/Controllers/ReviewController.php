@@ -44,6 +44,21 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            "title" => "required | max:100",
+            "review_detail" => "required | max:1000",
+            "rating" => "required | integer | min:1 | max:5",
+        ]);
+        
+        $user_id = Auth::user()->id;
+        $review = new Review();
+        $review->title = $request->title;
+        $review->review_detail = $request->review_detail;
+        $review->rating = $request->rating;
+        $product_id = $review->product_id;
+        $review->user_id = $user_id;
+        $review->save();
+        return redirect("/product/$product_id");
     }
 
     /**
