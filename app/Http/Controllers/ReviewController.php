@@ -81,19 +81,18 @@ class ReviewController extends Controller
      */
     public function edit($id)
     {
-        
         $review = Review::find($id);
         $product = $review->products;
         $author = $review->user_id;
-
+        $eligibleUsers = (Auth::check() && Auth::user()->isAdmin() | (Auth::check() && (Auth::user()->id == $author)));
         //Only admin can edit all review and only the authors can edit their own reviews but guests and other users can't
-        if(Auth::user()->isAdmin() | (Auth::check() && (Auth::user() == $author))) {
-            return view('reviews.edit_form', ['review' => $review, 'product' => $product]);
-        } else {
+        if(!$eligibleUsers) {
             echo "<h2 style='color:blue;'>You don't have right to edit the product. Redirect to home page in 5 seconds......</h2>";
             header( "refresh:5;url=/product/$product->id" );
+        } elseif($eligibleUsers) {
+            
+            return view('reviews.edit_form', ['review' => $review, 'product' => $product]);
         }
-
     }
 
     /**

@@ -24,17 +24,12 @@ class ManufacturerController extends Controller
         //
         $manufacturers = Manufacturer::all();
         
-        // $product_counts = DB::table('products')
-        //             ->select('id', DB::raw('count(id) as total'))
-        //             ->groupBy('manufacturer_id')
-        //             ->get();
-        //dd($product_counts);
-        // $product_counts = Product::with('manufacturer')
-        //                 ->select(DB::raw('count(id) as total'))
-        //                 ->groupBy('manufacturer_id')
-        //                 ->get();
-        //dd($product_counts);
-        $products = Product::all();
+        $products = DB::table('products')
+                              ->selectRaw('products.*, count(reviews.id) as numberOfReview, avg(reviews.rating) as AvgRating, reviews.product_id')
+                              ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
+                              ->groupBy('products.id')
+                            //   ->whereNull('reviews.product_id')
+                              ->get();
         
         return view('manufacturers.index', ['manufacturers' => $manufacturers, 'products' => $products]);
     }

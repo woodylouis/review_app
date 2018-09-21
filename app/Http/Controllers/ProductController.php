@@ -7,7 +7,9 @@ use App\Product;
 use App\Manufacturer;
 use App\Country;
 use App\Review;
+use App\User;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class ProductController extends Controller
 {
@@ -23,8 +25,16 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $products = Product::all();
-        return view('products.index')->with('products', $products);
+       
+        $products = DB::table('products')
+                              ->selectRaw('products.*, count(reviews.id) as numberOfReview, avg(reviews.rating) as AvgRating, reviews.product_id')
+                              ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
+                              ->groupBy('products.id')
+                              ->get();
+        
+        // $products = Product::all();
+
+        return view('products.index', ['products' => $products]);
     }
 
     /**

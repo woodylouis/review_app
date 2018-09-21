@@ -34,14 +34,18 @@
                   <h2 class='text-left'>All Products</h2>
                   
                   @foreach ($products as $product)
-                  <div class="mb-2 bg-white row shadow rounded items details">
+                  <div class="mb-2 bg-white row items details">
                     <div class="col-md-2 d-none d-md-block py-2">
                       <img src="{{ asset('images/iphonexs.png') }}" alt="iphonexs" class="product-pics-thumbnail">
                     </div>
                     <div class="col-sm-12 col-md-10 details">
                       <ul class="list-unstyled">
                           <li class="list-item col-md py-2"><a href="{{url("product/$product->id")}}"><h3>{{ $product->product_name }}</h3></a></li>
-                          <li class="list-item col-md py-2"> Rating: <strong>5</strong> from <a href="productid">5 reviews</a></li>
+                          @if ($product->AvgRating == null)
+                            <li class="list-item col-md py-2"> Rating: <strong>No Rating</strong></li>
+                          @else
+                             <li class="list-item col-md py-2"> Rating: <strong>{{$product->AvgRating}}</strong> from <a href="{{url("product/$product->id")}}#review"><strong>{{$product->numberOfReview}}</strong> reviews</a></li>
+                          @endif
                           <li class="list-item col-md py-2 product-description"><p><strong>Latest Review: </strong>{{ $product->product_description }}</p></li>
                       </ul>
                     </div>
