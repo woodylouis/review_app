@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Manufacturer;
 use App\Country;
+use App\Review;
+use Illuminate\Support\Facades\Auth;
+
 class ProductController extends Controller
 {
-    
+    //Guests can see the product list, details, and even add a product
     public function __construct() {
         $this->middleware('auth', ['except' => ['index', 'show', 'create', 'store']]);
     }
@@ -50,10 +53,7 @@ class ProductController extends Controller
                 "product_description" => "required | max:1000",
                 "price" => "required | numeric | min:0",
                 'manufacturer' =>'exists:manufacturers,id'
-
             ]);
-        
-        
         $product = new Product();
         $product->product_name = $request->product_name;
         $product->product_description = $request->product_description;
@@ -88,8 +88,16 @@ class ProductController extends Controller
     public function edit($id)
     {
         //
-        $product = Product::find($id);
-        return view('products.edit_form') -> with('product', $product) -> with('manufacturers', Manufacturer::all());
+        
+        if(Auth::user()->isAdmin()) {
+            $product = Product::find($id);
+            return view('products.edit_form') -> with('product', $product) -> with('manufacturers', Manufacturer::all());
+        } else {
+            
+            echo "<h2 style='color:blue;'>You don't have right to edit the product. Redirect to home page in 5 seconds......</h2>";
+            header( "refresh:5;url=/product/$id" );
+        }
+        
     }
 
     /**
@@ -130,6 +138,8 @@ class ProductController extends Controller
         //
         $product = Product::find($id);    
         $product->delete();
+        
+        $reviewForTheProduct = Review::where('product_id', $id)->delete();
         return redirect ('/product');
     }
 }

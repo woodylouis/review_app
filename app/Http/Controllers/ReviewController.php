@@ -55,7 +55,8 @@ class ReviewController extends Controller
         $review->title = $request->title;
         $review->review_detail = $request->review_detail;
         $review->rating = $request->rating;
-        $product_id = $review->product_id;
+        $product_id = $request->product_id;
+        $review->product_id = $product_id;
         $review->user_id = $user_id;
         $review->save();
         return redirect("/product/$product_id");
@@ -80,14 +81,18 @@ class ReviewController extends Controller
      */
     public function edit($id)
     {
-        //This is to retrieve review content including title, review detail, rating, etc
-        $review = Review::find($id);
-        // dd($review);
-        //This is to get product info
-        $product = $review->products;
-        // dd($product);
         
-        return view('reviews.edit_form', ['review' => $review, 'product' => $product]);
+        $review = Review::find($id);
+        $product = $review->products;
+        $author = $review->user_id;
+
+        //Only admin can edit all review and only the authors can edit their own reviews but guests and other users can't
+        if(Auth::user()->isAdmin() | (Auth::check() && (Auth::user() == $author))) {
+            return view('reviews.edit_form', ['review' => $review, 'product' => $product]);
+        } else {
+            echo "<h2 style='color:blue;'>You don't have right to edit the product. Redirect to home page in 5 seconds......</h2>";
+            header( "refresh:5;url=/product/$product->id" );
+        }
 
     }
 
@@ -138,5 +143,9 @@ class ReviewController extends Controller
     public function destroy($id)
     {
         //
+        $reviewForTheProduct = Review::find($id);
+        $product_id = $reviewForTheProduct->product_id;
+        $reviewForTheProduct->delete();
+        return redirect ("/product/$product_id");
     }
 }

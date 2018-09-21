@@ -88,6 +88,7 @@
                     
                         <form class="form-horizontal" method="POST" action="/review">
                         {{ csrf_field() }}
+                            <input type="hidden" name="product_id" value ='{{$product->id}}'>
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                 <label for="title" class="col-md-4 control-label">Title of your review</label>
                                 
