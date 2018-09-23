@@ -46,7 +46,7 @@
                           @else
                              <li class="list-item col-md py-2"> Rating: <strong>{{$product->AvgRating}}</strong> from <a href="{{url("product/$product->id")}}#review"><strong>{{$product->numberOfReview}}</strong> reviews</a></li>
                           @endif
-                          <li class="list-item col-md py-2 product-description"><p><strong>Latest Review: </strong>{{ $product->product_description }}</p></li>
+                          <li class="list-item col-md py-2 product-description"><p><strong>Description: </strong>{{ $product->product_description }}</p></li>
                       </ul>
                     </div>
                  </div>

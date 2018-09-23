@@ -79,6 +79,7 @@
                     
             </div>
         @endforeach
+        {{ $reviews->links()}}
         
         
         @if(Auth::check() && Auth::user())

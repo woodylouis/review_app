@@ -84,8 +84,9 @@ class ProductController extends Controller
         //This is to show products' details such as product name, price, place of origin, manufacturers etc
         $product = Product::find($id);
         //This is to show review details such as author, title, review content, rating etc for each product
-        $reviews = $product->users;
-        // dd($reviews[0]);
+        
+        $reviews = $product->users()->paginate(5);
+
         return view('products.show', ['product' => $product, 'reviews' => $reviews]);
     }
 
