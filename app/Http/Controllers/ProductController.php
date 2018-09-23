@@ -85,7 +85,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         //This is to show review details such as author, title, review content, rating etc for each product
         $reviews = $product->users;
-        // dd($reviews);
+        // dd($reviews[0]);
         return view('products.show', ['product' => $product, 'reviews' => $reviews]);
     }
 
@@ -104,7 +104,7 @@ class ProductController extends Controller
             return view('products.edit_form') -> with('product', $product) -> with('manufacturers', Manufacturer::all());
         } else {
             
-            echo "<h2 style='color:blue;'>You don't have right to edit the product. Redirect to home page in 5 seconds......</h2>";
+            echo "<h2 style='color:tomato;'>You don't have right to edit the product. Redirect to home page in 5 seconds......</h2>";
             header( "refresh:5;url=/product/$id" );
         }
         

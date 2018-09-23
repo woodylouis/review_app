@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-sm-12 col-md-10 details">
                       <ul class="list-unstyled">
-                          <li class="list-item col-md py-2"><a href="{{url("product/$product->id")}}"><h3>{{ $product->product_name }}</h3></a></li>
+                          <li class="list-item col-md py-2 title"><a href="{{url("product/$product->id")}}">{{ $product->product_name }}</a></li>
                           @if ($product->AvgRating == null)
                             <li class="list-item col-md py-2"> Rating: <strong>No Rating</strong></li>
                           @else
@@ -51,6 +51,8 @@
                     </div>
                  </div>
                  @endforeach
+                 
+                 {{ $products->links()}}
                 </div>
             </div>
         </div>

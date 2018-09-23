@@ -12,6 +12,7 @@
       
       <link rel="stylesheet" href="{{secure_asset('css/master.css')}}">
       <link rel="stylesheet" href="{{secure_asset('css/navCustom.css')}}">
+      <link rel="stylesheet" href="{{secure_asset('css/app.css')}}">
       <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
       <link href='https://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet'>
     </head>

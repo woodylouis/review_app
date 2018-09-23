@@ -4,19 +4,18 @@
 @endsection
 
 @section('content')
-    <h2 class="#">Create a Review</h2>
-    <div class="#">
-        <div class="#">
-        
+    <div class="edit-form col-md-5">
+        <div class="col-md-12">
+        <h2 class="col-md-6 ">Create a Review</h2>
 
-            <form class="form-group" method="POST" action="/review">
+            <form class=" form-group" method="POST" action="/review">
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                    <label for="product_name" class="control-label">Products</label>
+                    <label for="product_name" class="col-md-4 control-label">Products</label>
 
-                    <div class="#">
-                        <select class="custom-select my-1 mr-sm-2 form-control" id="inlineFormCustomSelectPref" name="product_id">
+                    <div class="col-md-12">
+                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="product_id">
                           @foreach($products as $product)
                             <option value="{{ $product -> id }}">{{ $product -> product_name }}</option>
                           @endforeach
@@ -32,9 +31,9 @@
                     
 
                 <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                    <label for="title" class="control-label">Title</label>
+                    <label for="title" class="col-md-4 control-label">Title</label>
 
-                    <div class="#">
+                    <div class="col-md-12">
                         <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" required>
 
                         @if ($errors->has('title'))
@@ -46,9 +45,9 @@
                 </div>
                     
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <label for="rating" class="control-label">Rating</label>
+                    <label for="rating" class="col-md-4 control-label">rating</label>
 
-                    <div class="#">
+                    <div class="col-md-12">
                         <input id="rating" type="rating" class="form-control" name="rating" value="{{ old('rating') }}" placeholder="1-5" min="1" max="5" required>
 
                         @if ($errors->has('rating'))
@@ -60,9 +59,9 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('review_detail') ? ' has-error' : '' }}">
-                    <label for="review_detail" class="control-label">Review Detail</label>
+                    <label for="review_detail" class="col-md-4 control-label">Review Detail</label>
 
-                    <div>
+                    <div class="col-md-12">
                         <textarea id="review_detail" span='3' type="review_detail" class="form-control" name="review_detail" value="{{ old('review_detail') }}" required></textarea>
 
                         @if ($errors->has('review_detail'))
@@ -73,11 +72,15 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn bg text-light mt-4">
-                    Submit
-                </button>
-                    
                 
+
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-4">
+                        <button type="submit" class="btn bg btn-primary">
+                            Submit
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>        

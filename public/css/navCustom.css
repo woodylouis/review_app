@@ -1,6 +1,7 @@
 
 /*nav bar custom style*/
 
+
 .navbar-brand {
     color: white;
 }
@@ -11,8 +12,9 @@
 }
 
 .nav-item {
-    padding-left: 0.8em;
-    padding-right: 0.8em;
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    font-weight: 300;
 }
 
 
@@ -27,6 +29,7 @@
     color: white;
     transform: scale(1.1); 
 }
+
 
 
 /*For footer styling*/

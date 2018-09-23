@@ -13,7 +13,7 @@
 
    <!--Navbar links -->
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav navbar-right">
       <!--Guest only can see links for add products, login and register-->
       @if (Auth::guest())
         <li class="nav-item nav-align-center"><a class="nav-link nav-item" href="/manufacturer">Browse Manufacturers</a></li>
@@ -37,7 +37,7 @@
       </li> 
       <li class="dropdown nav-item nav-align-center">
           <a href="#" class="dropdown-toggle nav-link nav-item" data-toggle="dropdown" role="button" aria-expanded="false">
-              {{ Auth::user()->name }} <span class="caret"></span>
+              {{ Auth::user()->name }} 
           </a>
           <ul class="dropdown-menu" role="menu">
               <li>
@@ -62,7 +62,7 @@
         <a class="nav-link nav-item" href="/manufacturer">Browse Manufacturers</a>
       </li>
       <li class="nav-item nav-align-center">
-        <a class="nav-link nav-item" href="/writeReview">Write a Review</a>
+        <a class="nav-link nav-item" href="/review/create">Write a Review</a>
       </li>
       <li class="nav-item nav-align-center">
         <a class="nav-link nav-item" href="/product/create">Add a Product</a>
@@ -70,7 +70,7 @@
       
       <li class="dropdown nav-item nav-align-center">
           <a href="#" class="dropdown-toggle nav-link nav-item" data-toggle="dropdown" role="button" aria-expanded="false">
-              {{ Auth::user()->name }} <span class="caret"></span>
+              {{ Auth::user()->name }} 
           </a>
           <ul class="dropdown-menu" role="menu">
               <li>

@@ -30,7 +30,7 @@
             <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Write Description Here" name="product_description">
             <br>
             <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Manufacturers</label>
-            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="manufacturer">
+            <select class="custom-select my-1 mr-sm-2 form-control" id="inlineFormCustomSelectPref" name="manufacturer">
               @foreach($manufacturers as $manufacturer)
                 <option value="{{ $manufacturer -> id }}">{{ $manufacturer -> manufacturer_name }}</option>
               @endforeach

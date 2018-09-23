@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Manufacturer;
 use App\Country;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 class ManufacturerController extends Controller
@@ -29,8 +30,9 @@ class ManufacturerController extends Controller
                               ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
                               ->groupBy('products.id')
                             //   ->whereNull('reviews.product_id')
-                              ->get();
+                              ->paginate(5);
         
+
         return view('manufacturers.index', ['manufacturers' => $manufacturers, 'products' => $products]);
     }
     /**
@@ -41,7 +43,13 @@ class ManufacturerController extends Controller
     public function create()
     {
         //
-        return view('manufacturers.create_form')->with('manufacturers', Manufacturer::all())->with('countries', Country::all());
+        if(Auth::user()->isAdmin()) {
+            return view('manufacturers.create_form')->with('manufacturers', Manufacturer::all())->with('countries', Country::all());
+        } else {
+            
+            echo "<h2 style='color:tomato;'>You don't have right to add manufacturers. Redirect to home page in 5 seconds......</h2>";
+            header( "refresh:5;url=/" );
+        }
     }
 
     /**

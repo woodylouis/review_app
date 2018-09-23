@@ -5,21 +5,22 @@
 @endsection
 
 @section('content')
+    
     <h1>{{$product->product_name}}</h1>
     <div class="product-detail">
         <p><em>Updated at {{$product->updated_at}}</em></p>
         <p>Brand: <strong>{{$product->manufacturer->manufacturer_name}}</strong></p>
         <p>Origin of Country: <strong>{{$product->manufacturer->country->country}}</strong></p>
-        <p>Price: AU ${{$product->price}}</p>
+        <p>Price: <strong>AU ${{$product->price}}</strong></p>
         <p>{{$product->product_description}}</p>
         
         @if(Auth::check() && Auth::user()->name == 'Moderator')
             <div class="text-right">
-                <div class="d-inline-block" data-toggle="tooltip" data-placement="top" title="Write review">
-                    <a href="/product/{{$product->id}}#review-form"><img src="{{ asset('open-iconic/svg/plus.svg') }}" alt="icon edit" width='15' height='15'>Add review</a>
+                <div class="d-inline-block py-2" data-toggle="tooltip" data-placement="top" title="Write review">
+                    <a href="/product/{{$product->id}}#review-form"><img src="{{ asset('open-iconic/svg/plus.svg') }}" alt="icon edit" width='15' height='15'></a>
                 </div>
                 <div class="d-inline-block" data-toggle="tooltip" data-placement="top" title="Edit Product">
-                    <a href="/product/{{$product->id}}/edit"><img src="{{ asset('open-iconic/svg/pencil.svg') }}" alt="icon edit" width='15' height='15'></a>
+                    <a href="/product/{{$product->id}}/edit" class="pl-3"><img src="{{ asset('open-iconic/svg/pencil.svg') }}" alt="icon edit" width='15' height='15'></a>
                 </div>
                 <div class="d-inline-block" data-toggle="tooltip" data-placement="top" title="Delete">
                         <form method="POST" action="/product/{{$product->id}}">
@@ -50,7 +51,7 @@
                         <li><a href='#'>{{$review->name}}</a></li>
                     </div>
                     <div class="col-12 col-sm-10 col-md-10 list-unstyled">
-                        <li><h3>{{$review -> pivot -> title}}</h3></li>
+                        <li class='title'>{{$review -> pivot -> title}}</li>
                         <li class="rating">Rating: {{$review -> pivot -> rating}} of 5, on {{$review -> pivot -> created_at}}</li>
                         <li class="review-detail">{{$review -> pivot -> review_detail}}</li>
                         
@@ -86,11 +87,11 @@
                 <div class="product-review">
                     <div class="panel-body">
                     
-                        <form class="form-horizontal" method="POST" action="/review">
+                        <form class="review-form" method="POST" action="/review">
                         {{ csrf_field() }}
                             <input type="hidden" name="product_id" value ='{{$product->id}}'>
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                <label for="title" class="col-md-4 control-label">Title of your review</label>
+                                <label for="title" class="col-md-4 control-label mt-4">Title of your review</label>
                                 
                                 <div class="col-md-12">
                                     <input id="title" type="text" class="form-control" name="title" placeholder="Example: This is perfect!!" value="{{ old('title') }}" required>
@@ -103,7 +104,7 @@
                             </div>
                         
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="rating" class="col-md-4 control-label">rating</label>
+                                <label for="rating" class="col-md-4 control-label mt-4">rating</label>
                                 
                                 <div class="col-md-12">
                                     <input id="rating" type="rating" class="form-control" name="rating" value="{{ old('rating') }}" placeholder="1-5" min="1" max="5" required>
@@ -116,7 +117,7 @@
                                 </div>
                             </div>
                             <div class="form-group{{ $errors->has('review_detail') ? ' has-error' : '' }}">
-                                <label for="review_detail" class="col-md-4 control-label">Your review</label>
+                                <label for="review_detail" class="col-md-4 control-label mt-4">Your review</label>
                                 
                                 <div class="col-md-12">
                                 <textarea id="review_detail" rows='5' type="review_detail" class="form-control" name="review_detail" value="{{ old('review_detail') }}" required></textarea>
@@ -129,8 +130,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn bg btn-primary">
+                                <div class="col-md-6 mt-4">
+                                    <button type="submit" class="btn bg text-light">
                                         Submit
                                     </button>
                                 </div>

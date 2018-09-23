@@ -25,7 +25,7 @@
             <br>
             
             <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Country</label>
-            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="country">
+            <select class="custom-select my-1 mr-sm-2 form-control" id="inlineFormCustomSelectPref" name="country">
               @foreach($countries as $country)
                 <option value="{{ $country -> id }}">{{ $country -> country }}</option>
               @endforeach
@@ -33,7 +33,7 @@
         
         
             
-            <button type="submit" class="btn bg text-light mt-3">Create</button>
+            <button type="submit" class="btn bg text-light mt-4">Create</button>
         </form>
     </div>
 @endsection
