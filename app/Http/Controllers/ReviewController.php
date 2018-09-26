@@ -47,7 +47,7 @@ class ReviewController extends Controller
         $this->validate($request,[
             "title" => "required | max:100",
             "review_detail" => "required | max:1000",
-            "rating" => "required | integer | min:1 | max:5",
+            "rating" => "required | integer | min:0 | max:5",
         ]);
         
         $user_id = Auth::user()->id;

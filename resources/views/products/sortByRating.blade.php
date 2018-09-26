@@ -21,7 +21,7 @@
         <a class="dropdown-item" href="/sortbyreviews">Most Reviews</a>
         <a class="dropdown-item" href="/sortbyrating">Rating</a>
       </div>
-    </div>
+    </div><br>
     
     <div class="col-12 container">
       @foreach ($products as $product)

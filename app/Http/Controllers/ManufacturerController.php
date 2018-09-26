@@ -12,7 +12,7 @@ use DB;
 class ManufacturerController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'sortByNumbersOfReviews', 'sortByAverageRating', 'sortByBrand']]);
     }
     
     /**
@@ -25,12 +25,11 @@ class ManufacturerController extends Controller
         //
         $manufacturers = Manufacturer::all();
         
-        $products = DB::table('products')
-                              ->selectRaw('products.*, count(reviews.id) as numberOfReview, avg(reviews.rating) as AvgRating, reviews.product_id')
-                              ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
-                              ->groupBy('products.id')
-                            //   ->whereNull('reviews.product_id')
-                              ->paginate(5);
+        $products = Product::selectRaw('products.*, count(reviews.id) as numberOfReview, avg(reviews.rating) as AvgRating, reviews.product_id')
+                          ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
+                          ->groupBy('products.id')
+                          ->paginate(5);
+        
         
 
         return view('manufacturers.index', ['manufacturers' => $manufacturers, 'products' => $products]);
@@ -126,4 +125,59 @@ class ManufacturerController extends Controller
     {
         //
     }
+    
+    public function sortByNumbersOfReviews() {
+        //This is to be used on the side bar to list all brands
+        $manufacturers = Manufacturer::all();
+        
+        //This function is used to sort by numbers of reviews in desceding order
+        $products = Product::selectRaw('products.*, count(reviews.id) as numberOfReview, avg(reviews.rating) as AvgRating, reviews.product_id')
+                          ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
+                          ->groupBy('products.id')
+                          ->orderBy('numberOfReview', 'desc')
+                          ->paginate(5);
+        
+        
+
+        return view('manufacturers.sortNumberOfReviews', ['manufacturers' => $manufacturers, 'products' => $products]);
+    }
+    
+    public function sortByAverageRating() {
+        
+        //This is to be used on the side bar to list all brands
+        $manufacturers = Manufacturer::all();
+        
+        //This function is used to sort by average rating in desceding order
+        $products = Product::selectRaw('products.*, count(reviews.id) as numberOfReview, avg(reviews.rating) as AvgRating, reviews.product_id')
+                          ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
+                          ->orderBy('AvgRating', 'desc')
+                          ->groupBy('products.id')
+                          
+                          ->paginate(5);
+        
+        
+        
+
+        return view('manufacturers.sortAverageRating', ['manufacturers' => $manufacturers, 'products' => $products]);
+    }
+    
+    public function sortByBrand() {
+        
+        //This is to be used on the side bar to list all brands
+        $manufacturers = Manufacturer::all();
+        
+        //This function is used to sort by manufacturer name in ascending order
+        $products = Product::selectRaw('products.*, count(reviews.id) as numberOfReview, avg(reviews.rating) as AvgRating, reviews.product_id')
+                          ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
+                          ->leftJoin('manufacturers', 'manufacturer_id', '=', 'manufacturers.id')
+                          ->orderBy('manufacturers.manufacturer_name', 'asc')
+                          ->groupBy('products.id')
+                          ->paginate(5);
+        
+        
+        
+
+        return view('manufacturers.sortByBrand', ['manufacturers' => $manufacturers, 'products' => $products]);
+    }
+    
 }

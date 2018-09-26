@@ -79,7 +79,9 @@
                     
             </div>
         @endforeach
+        <!--Pagination-->
         {{ $reviews->links()}}
+        
         
         
         @if(Auth::check() && Auth::user())

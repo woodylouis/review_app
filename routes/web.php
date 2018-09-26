@@ -41,14 +41,19 @@ Route::get('/test', function () {
     // dd($products);
     
 });
+
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
-
-// Route::view('/', 'welcome');
-// Auth::routes();
 Route::get('/home', 'HomeController@index')    
     ->name('home');
 Route::get('/admin', 'AdminController@admin')    
     ->middleware('is_admin')    
     ->name('admin');
+
+Route::get('/sortbyreviews', 'ProductController@numberOfReviewsDESC');
+Route::get('/sortbyrating', 'ProductController@avgRatingDESC');
+
+
+Route::get('/sortNumberOfReviews', 'ManufacturerController@sortByNumbersOfReviews');
+Route::get('/sortAverageRating', 'ManufacturerController@sortByAverageRating');
+Route::get('/sortBrand', 'ManufacturerController@sortByBrand');

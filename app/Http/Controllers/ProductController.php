@@ -15,7 +15,7 @@ class ProductController extends Controller
 {
     //Guests can see the product list, details, and even add a product
     public function __construct() {
-        $this->middleware('auth', ['except' => ['index', 'show', 'create', 'store']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'create', 'store', 'numberOfReviewsDESC']]);
     }
     /**
      * Display a listing of the resource.
@@ -24,16 +24,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-       
-        $products = DB::table('products')
-                              ->selectRaw('products.*, count(reviews.id) as numberOfReview, avg(reviews.rating) as AvgRating, reviews.product_id')
-                              ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
-                              ->groupBy('products.id')
-                              ->get();
+        // In the product index page, it will show products' name, description, number of reviews and average ratingfor each product
+        $products = Product::selectRaw('products.*, count(reviews.id) as numberOfReview, avg(reviews.rating) as AvgRating, reviews.product_id')
+                          ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
+                          ->groupBy('products.id')
+                          ->get();
         
         // $products = Product::all();
-
         return view('products.index', ['products' => $products]);
     }
 
@@ -83,10 +80,10 @@ class ProductController extends Controller
     {
         //This is to show products' details such as product name, price, place of origin, manufacturers etc
         $product = Product::find($id);
-        //This is to show review details such as author, title, review content, rating etc for each product
         
-        $reviews = $product->users()->paginate(5);
-
+        //This is to show review details such as author, title, review content, rating etc for each product, order by creation date, 5 reviews per page
+        $reviews = $product->users()->orderBy('pivot_created_at', 'desc')->paginate(5);
+        
         return view('products.show', ['product' => $product, 'reviews' => $reviews]);
     }
 
@@ -152,5 +149,38 @@ class ProductController extends Controller
         
         $reviewForTheProduct = Review::where('product_id', $id)->delete();
         return redirect ('/product');
+    }
+    
+    
+    public function numberOfReviewsDESC() {
+        /*
+            Select product, count number product and calculate avergae of rating, order by number of reviews in descending order
+        */
+        
+        $products = Product::selectRaw('products.*, count(reviews.id) as numberOfReview, avg(reviews.rating) as AvgRating, reviews.product_id')
+                          ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
+                          ->groupBy('products.id')
+                          ->orderBy('numberOfReview', 'desc')
+                          ->get();
+        
+        // $products = Product::all();
+
+        
+        return view('products.sortByMostReviewed', ['products' => $products]);
+    }
+    
+    public function avgRatingDESC() {
+        /*
+            Select product, count number product and calculate avergae of rating, order by number of reviews in descending order
+        */
+        
+        $products = Product::selectRaw('products.*, count(reviews.id) as numberOfReview, avg(reviews.rating) as AvgRating, reviews.product_id')
+                          ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
+                          ->groupBy('products.id')
+                          ->orderBy('AvgRating', 'desc')
+                          ->get();
+        
+        
+        return view('products.sortByRating', ['products' => $products]);
     }
 }

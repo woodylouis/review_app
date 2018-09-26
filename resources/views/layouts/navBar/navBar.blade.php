@@ -4,7 +4,7 @@
 
 <nav class="navbar navbar-expand-md bg navbar-dark sticky-top">
    <!--Brand -->
-  <a class="navbar-brand" href="/product">Product Reviews</a>
+  <a class="navbar-brand" href="/manufacturer">Product Reviews</a>
 
    <!--Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
