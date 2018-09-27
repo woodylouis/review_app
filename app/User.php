@@ -37,10 +37,13 @@ class User extends Authenticatable
         return $this -> belongsToMany('App\Product', 'reviews')->withPivot('rating')->withPivot('title')->withPivot('review_detail')->withTimestamps();
     }
     
-    // function reviewers() {
-        
-    // }
+    function likes() {
+        return $this->hasMany('App\Like', 'review_id');
+    }
     
+    function dislikes() {
+        return $this->hasMany('App\Dislike', 'review_id');
+    }
     
     public function isAdmin()
     {

@@ -55,6 +55,25 @@
                         <li class="rating">Rating: {{$review -> pivot -> rating}} of 5, on {{$review -> pivot -> created_at}}</li>
                         <li class="review-detail">{{$review -> pivot -> review_detail}}</li>
                         
+                        <div class="d-inline-block" data-placement="top" title="Like this Review">
+                            <form method="POST" action="/like">
+                                {{csrf_field()}}
+                                    <button type="submit" class='like-dislike mt-3 bg text-light' value="{{$review -> pivot -> id}}" name="review_id">
+                                        Like
+                                    </button>
+                            </form>
+                        </div>
+                        
+                        <div class="d-inline-block" data-placement="top" title="Disike this Review">
+                            <form method="POST" action="/dislike">
+                                {{csrf_field()}}
+                                <button type="submit" class='like-dislike mt-3 bg text-light' value="{{$review -> pivot -> id}}" name="review_id">
+                                    Disike
+                                </button>
+                            </form>
+                        </div>
+                        
+                        
                         <!--This line of code allows admin to access all edit or delete action but the particular users can edit or delete their own reviews-->
                         @if((Auth::check() && Auth::user()->name == 'Moderator') | (Auth::check() && Auth::user()->id == $review -> pivot -> user_id))
                             <div class="text-right">

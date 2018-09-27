@@ -40,6 +40,11 @@
               {{ Auth::user()->name }} 
           </a>
           <ul class="dropdown-menu" role="menu">
+            
+              <li><a href="{{ route('user.show', Auth::user()->id) }}">Profile</a></li>
+              <li><a href="{{ route('user.edit', Auth::user()->id) }}">Edit Profile</a></li>
+              <li class="divider"></li>
+            
               <li>
                   <a href="{{ route('logout') }}"
                       onclick="event.preventDefault();
@@ -51,6 +56,7 @@
                       {{ csrf_field() }}
                   </form>
               </li>
+              
           </ul>
       </li>
       <li class="nav-item nav-link nav-align-center">
@@ -73,6 +79,10 @@
               {{ Auth::user()->name }} 
           </a>
           <ul class="dropdown-menu" role="menu">
+            
+              <li><a href="{{ route('user.show', Auth::user()->id) }}">Profile</a></li>
+              <li><a href="{{ route('user.edit', Auth::user()->id) }}">Edit Profile</a></li>
+              <li class="divider"></li>
               <li>
                   <a href="{{ route('logout') }}"
                       onclick="event.preventDefault();

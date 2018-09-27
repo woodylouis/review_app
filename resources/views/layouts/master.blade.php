@@ -19,7 +19,7 @@
     
     
     <body>
-      <div class=”wrapper”>
+      <div class="wrapper">
       @include('layouts.navBar.navBar')
       
       <main role="main">

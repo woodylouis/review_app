@@ -12,3 +12,4 @@
 [02-Aug-2018 01:06:37 UTC] PHP   3. require() /home/ubuntu/workspace/blank/bootstrap/autoload.php:17
 [02-Aug-2018 01:06:37 UTC] PHP   4. ComposerAutoloaderInitcd603a91499b38fd173a57e85b0ef9aa::getLoader() /home/ubuntu/workspace/blank/vendor/autoload.php:7
 [02-Aug-2018 01:06:37 UTC] PHP   5. composerRequirecd603a91499b38fd173a57e85b0ef9aa() /home/ubuntu/workspace/blank/vendor/composer/autoload_real.php:56
+[26-Sep-2018 04:14:56 UTC] PHP Fatal error:  Cannot redeclare App\User::likes() in /home/ubuntu/workspace/Assignment_2/app/User.php on line 44

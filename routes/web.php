@@ -17,7 +17,7 @@ use App\User;
 Route::resource('product', 'ProductController');
 Route::resource('manufacturer', 'ManufacturerController');
 Route::resource('review', 'ReviewController');
-
+Route::resource('user', 'UserController');
 
 // Route::get('/', function () {return view('home'); });
 
@@ -57,3 +57,6 @@ Route::get('/sortbyrating', 'ProductController@avgRatingDESC');
 Route::get('/sortNumberOfReviews', 'ManufacturerController@sortByNumbersOfReviews');
 Route::get('/sortAverageRating', 'ManufacturerController@sortByAverageRating');
 Route::get('/sortBrand', 'ManufacturerController@sortByBrand');
+
+Route::post('/like', 'LikeDislikeController@storeLike');
+Route::post('/dislike', 'LikeDislikeController@storeDislike');

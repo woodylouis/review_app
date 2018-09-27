@@ -8,6 +8,7 @@ use App\Manufacturer;
 use App\Country;
 use App\Review;
 use App\User;
+use App\Like;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
@@ -84,7 +85,28 @@ class ProductController extends Controller
         //This is to show review details such as author, title, review content, rating etc for each product, order by creation date, 5 reviews per page
         $reviews = $product->users()->orderBy('pivot_created_at', 'desc')->paginate(5);
         
-        return view('products.show', ['product' => $product, 'reviews' => $reviews]);
+        // $reviewsForCurrentProduct = Review::where('product_id', $id)->get();
+
+        // foreach($reviewsForCurrentProduct as $reviewForCurrentProduct) {
+        //     $reviewId = $reviewForCurrentProduct->id;
+        //     $countForEachReview = Like::where('review_id', $reviewId)->count();
+        //     // dd($countForEachReview);
+        // }
+    
+        // $re
+        
+        $reviewss = Review::where('product_id', $id)->get();
+        
+        foreach($reviewss as $review) {
+            $review_id = $review->id;
+            
+        }
+        
+        $likes = Like::where('review_id', $review_id)->get();
+        // dd($likes);
+        
+        
+        return view('products.show', ['product' => $product, 'reviews' => $reviews, 'likes' => $likes]);
     }
 
     /**
