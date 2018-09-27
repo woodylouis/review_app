@@ -8,8 +8,15 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     
-    public function __construct() {
-        $this->middleware('auth', ['except' => []]);
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'except' => ['show', 'create', 'store', 'index']
+        ]);
+
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
     }
     /**
      * Display a listing of the resource.
@@ -18,7 +25,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::paginate(5);
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -51,7 +59,6 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        dd('at user');
     }
 
     /**
@@ -62,7 +69,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        //Users only can edit their own profile, or HTTP 403 is shown 
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
@@ -77,13 +85,20 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:50',
-            'password' => 'required|confirmed|min:6'
+            'password' => 'nullable|confirmed|min:6'
         ]);
+        
+        //Users only can edit their own profile, or HTTP 403 is shown 
+        $this->authorize('update', $user);
 
-        $user->update([
-            'name' => $request->name,
-            'password' => bcrypt($request->password),
-        ]);
+        $data = [];
+        $data['name'] = $request->name;
+        if ($request->password) {
+            $data['password'] = bcrypt($request->password);
+        }
+        $user->update($data);
+
+        session()->flash('success', 'Profile Updated Successfully！');
 
         return redirect()->route('user.show', $user->id);
     }

@@ -22,6 +22,7 @@
         <li class="nav-item nav-align-center"><a class="nav-link nav-item" href="{{ route('register') }}">Register</a></li>
       <!--Moderator can see all links-->
       @elseif (Auth::check() && Auth::user()->isAdmin())
+      
       <li class="nav-item nav-align-center">
         <a class="nav-link nav-item" href="/manufacturer">Browse Manufacturers</a>
       </li>
@@ -40,7 +41,7 @@
               {{ Auth::user()->name }} 
           </a>
           <ul class="dropdown-menu" role="menu">
-            
+              <li><a href="{{ route('user.index') }}">Users list</a></li>
               <li><a href="{{ route('user.show', Auth::user()->id) }}">Profile</a></li>
               <li><a href="{{ route('user.edit', Auth::user()->id) }}">Edit Profile</a></li>
               <li class="divider"></li>
