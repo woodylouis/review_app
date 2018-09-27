@@ -56,9 +56,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        $reviews = $user->reviews()
+                           ->orderBy('created_at', 'desc')
+                           ->paginate(30);
+        return view('users.show', compact('user', 'reviews'));
     }
 
     /**
@@ -98,7 +101,6 @@ class UserController extends Controller
         }
         $user->update($data);
 
-        session()->flash('success', 'Profile Updated Successfully！');
 
         return redirect()->route('user.show', $user->id);
     }
@@ -109,8 +111,24 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return back();
+    }
+    
+    
+    public function followings(User $user)
+    {
+        $users = $user->followings()->paginate(30);
+        $title = 'Followings';
+        return view('users.show_follow', compact('users', 'title'));
+    }
+
+    public function followers(User $user)
+    {
+        $users = $user->followers()->paginate(30);
+        $title = 'Followers';
+        return view('users.show_follow', compact('users', 'title'));
     }
 }

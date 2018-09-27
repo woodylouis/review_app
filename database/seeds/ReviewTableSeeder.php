@@ -75,5 +75,6 @@ class ReviewTableSeeder extends Seeder
             'product_id' => 6, 
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
         ]);
+        
     }
 }

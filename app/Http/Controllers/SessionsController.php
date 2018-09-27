@@ -12,6 +12,9 @@ class SessionsController extends Controller
             'only' => ['create']
         ]);
     }
+    
+    
+    
     //Redirect to edit page after login
     public function store(Request $request)
     {

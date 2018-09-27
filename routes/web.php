@@ -19,27 +19,12 @@ Route::resource('manufacturer', 'ManufacturerController');
 Route::resource('review', 'ReviewController');
 Route::resource('user', 'UserController');
 
+Route::get('/user/{user}/followings', 'UserController@followings')->name('users.followings');
+Route::get('/user/{user}/followers', 'UserController@followers')->name('users.followers');
 // Route::get('/', function () {return view('home'); });
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-
-Route::get('/test', function () {
-    // $user = User::find(1);
-    // $products = $user->products;
-    // //dd($products);
-    // $name = 'Apple';
-    // $prods = $user->products()->whereRaw('product_name like ?', 
-    //                 array("%$name%")) -> get();
-    // $product = Product::find(1);
-    // $review = $product ->users;
-    // $name = $input['name'];
-    // $products = Product::whereHas('manufacturers', function($query) use ($name){return $query->whereRaw('manufacturer_name like ?', array("%$name%"));})->get();
-    
-    // dd($products);
-    
 });
 
 Auth::routes();
@@ -60,3 +45,7 @@ Route::get('/sortBrand', 'ManufacturerController@sortByBrand');
 
 Route::post('/like', 'LikeDislikeController@storeLike');
 Route::post('/dislike', 'LikeDislikeController@storeDislike');
+
+// Route::get('login', 'SessionsController@create')->name('login');
+// Route::post('login', 'SessionsController@store')->name('login');
+// Route::delete('logout', 'SessionsController@destroy')->name('logout');

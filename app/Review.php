@@ -9,8 +9,9 @@ class Review extends Model
     //
     protected $fillable=['title', 'review_detail', 'rating', 'user_id', 'product_id'];
     
-    function reviewers(){
-       return  $this->belongsTo('App\User','user_id');
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
     
     function products(){

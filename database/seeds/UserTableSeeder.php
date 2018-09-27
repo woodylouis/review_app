@@ -25,7 +25,6 @@ class UserTableSeeder extends Seeder
             'name' => 'Moderator',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('123456'),
-            'date_of_birth' => '2014-05-06',
             'type' => 'admin',
         ]);
         
@@ -33,14 +32,12 @@ class UserTableSeeder extends Seeder
             'name' => 'louis',
             'email' => 'louis@gmail.com',
             'password' => bcrypt('123456'),
-            'date_of_birth' => '2014-05-06',
         ]);
         
         DB::table('users')->insert([
             'name' => 'wenjin',
             'email' => 'wenjin@gmail.com',
             'password' => bcrypt('123456'),
-            'date_of_birth' => '2014-05-06',
         ]);
     
         
@@ -48,14 +45,12 @@ class UserTableSeeder extends Seeder
             'name' => 'edwin',
             'email' => 'edwin@gmail.com',
             'password' => bcrypt('123456'),
-            'date_of_birth' => '2014-05-06',
         ]);
         
         DB::table('users')->insert([
             'name' => 'tony',
             'email' => 'tony@gmail.com',
             'password' => bcrypt('123456'),
-            'date_of_birth' => '2014-05-06',
 
         ]);
         
@@ -63,7 +58,6 @@ class UserTableSeeder extends Seeder
             'name' => 'albert',
             'email' => 'albert@gmail.com',
             'password' => bcrypt('123456'),
-            'date_of_birth' => '2014-05-06',
 
         ]);
         
@@ -71,7 +65,6 @@ class UserTableSeeder extends Seeder
             'name' => 'young',
             'email' => 'young@gmail.com',
             'password' => bcrypt('123456'),
-            'date_of_birth' => '2014-05-06',
 
         ]);
     }

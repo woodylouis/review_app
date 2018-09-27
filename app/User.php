@@ -37,6 +37,12 @@ class User extends Authenticatable
         return $this -> belongsToMany('App\Product', 'reviews')->withPivot('rating')->withPivot('title')->withPivot('review_detail')->withTimestamps();
     }
     
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+    
+    
     function likes() {
         return $this->hasMany('App\Like', 'review_id');
     }
@@ -48,6 +54,41 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->type === self::ADMIN_TYPE;
+    }
+    
+    //get followers
+    public function followers()
+    {
+        return $this->belongsToMany(User::Class, 'followers', 'user_id', 'follower_id');
+    }
+    
+    //get people that the user follow
+    public function followings()
+    {
+        return $this->belongsToMany(User::Class, 'followers', 'follower_id', 'user_id');
+    }
+    
+    //Is_array is used to determine if the parameter is an array. If it is already an array, there is no need to use the compact method. 
+    public function follow($user_ids)
+    {
+        if (!is_array($user_ids)) {
+            $user_ids = compact('user_ids');
+        }
+        $this->followings()->sync($user_ids, false);
+    }
+
+    public function unfollow($user_ids)
+    {
+        if (!is_array($user_ids)) {
+            $user_ids = compact('user_ids');
+        }
+        $this->followings()->detach($user_ids);
+    }
+    
+    //A method to determine whether the currently logged in user A is concerned about user B.
+    public function isFollowing($user_id)
+    {
+        return $this->followings->contains($user_id);
     }
     
 }
