@@ -83,9 +83,9 @@
                 </div>
 
                 <div class="links">
-                    <a href="/product">Product Review</a>
-                    <a href="/product">Wenjin Li</a>
-                    <a href="/product">s5120196</a>
+                    <a href="/manufacturer">Product Review</a>
+                    <a href="/manufacturer">Wenjin Li</a>
+                    <a href="/manufacturer">s5120196</a>
                 </div>
             </div>
         </div>

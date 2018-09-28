@@ -15,13 +15,15 @@ use App\User;
 */
 
 Route::resource('product', 'ProductController');
-Route::resource('manufacturer', 'ManufacturerController');
+Route::resource('manufacturer', 'ManufacturerController', ['only' => ['index', 'show', 'store', 'destroy']]);
 Route::resource('review', 'ReviewController');
 Route::resource('user', 'UserController');
 
-Route::get('/user/{user}/followings', 'UserController@followings')->name('users.followings');
-Route::get('/user/{user}/followers', 'UserController@followers')->name('users.followers');
-// Route::get('/', function () {return view('home'); });
+Route::get('/user/{user}/followings', 'UserController@followings')->name('user.followings');
+Route::get('/user/{user}/followers', 'UserController@followers')->name('user.followers');
+
+Route::post('/user/followers/{user}', 'FollowersController@store')->name('followers.store');
+Route::delete('/user/followers/{user}', 'FollowersController@destroy')->name('followers.destroy');
 
 Route::get('/', function () {
     return view('welcome');

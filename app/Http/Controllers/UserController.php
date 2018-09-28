@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -58,9 +59,13 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $reviews = $user->reviews()
-                           ->orderBy('created_at', 'desc')
-                           ->paginate(30);
+        // Only logged in users can retrieve data
+        $reviews = [];
+        if (Auth::check()) {
+            $reviews = $user->reviews()
+                               ->orderBy('created_at', 'desc')
+                               ->paginate(30);
+        }
         return view('users.show', compact('user', 'reviews'));
     }
 

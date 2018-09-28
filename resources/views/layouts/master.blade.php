@@ -27,6 +27,7 @@
         <div class="jumbotron">
             <h3 class="page-title">@yield('pageTitle')</h3>
             <div class = "form" id="content">
+              @include('shared._messages')
               @yield('content')
              
                 <a href="#" id="myBtn">Top</a>

@@ -23,7 +23,6 @@ class FollowersTableSeeder extends Seeder
         //follow all users except user with id 1
         $user->follow($follower_ids);
 
-        // 除了 1 号用户以外的所有用户都来关注 1 号用户
         // Apart from user with id 1, all users follow user with id 1
         foreach ($followers as $follower) {
             $follower->follow($user_id);

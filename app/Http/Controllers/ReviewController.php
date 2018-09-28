@@ -50,16 +50,26 @@ class ReviewController extends Controller
             "rating" => "required | integer | min:0 | max:5",
         ]);
         
-        $user_id = Auth::user()->id;
-        $review = new Review();
-        $review->title = $request->title;
-        $review->review_detail = $request->review_detail;
-        $review->rating = $request->rating;
+        //use reviews() in User model
+        Auth::user()->reviews()->create([
+            'title' => $request['title'],
+            'review_detail' => $request['review_detail'],
+            'rating' => $request['rating'],
+            'product_id' => $request['product_id'],
+        ]);
+        
         $product_id = $request->product_id;
-        $review->product_id = $product_id;
-        $review->user_id = $user_id;
-        $review->save();
-        return redirect("/product/$product_id");
+        return redirect("/product/$product_id");        
+        // $user_id = Auth::user()->id;
+        // $review = new Review();
+        // $review->title = $request->title;
+        // $review->review_detail = $request->review_detail;
+        // $review->rating = $request->rating;
+        // $product_id = $request->product_id;
+        // $review->product_id = $product_id;
+        // $review->user_id = $user_id;
+        // $review->save();
+        // return redirect("/product/$product_id");
     }
 
     /**
@@ -145,6 +155,7 @@ class ReviewController extends Controller
         $reviewForTheProduct = Review::find($id);
         $product_id = $reviewForTheProduct->product_id;
         $reviewForTheProduct->delete();
+        session()->flash('success', 'The review has been removed!');
         return redirect ("/product/$product_id");
     }
 }
