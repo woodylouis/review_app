@@ -5,7 +5,9 @@
 @endsection
 
 @section('content')
-    
+    @foreach ($productPhotos as $productPhoto)
+        <img src="{{url($productPhoto->filename)}}" alt="product image">
+    @endforeach
     <h1>{{$product->product_name}}</h1>
     <div class="product-detail">
         <p><em>Updated at {{$product->updated_at}}</em></p>

@@ -4,7 +4,8 @@ namespace App;
 use Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use App\ProductsPhoto;
+use App\Like;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -35,6 +36,10 @@ class User extends Authenticatable
     
     function products() {
         return $this -> belongsToMany('App\Product', 'reviews')->withPivot('rating')->withPivot('title')->withPivot('review_detail')->withTimestamps();
+    }
+    
+    function photos() {
+        return $this -> hasMany(ProductsPhoto::class);
     }
     
     public function reviews()

@@ -53,6 +53,8 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+     
+    // Use UploadRequest for photos
     public function store(UploadRequest $request)
     {
         //
@@ -99,7 +101,11 @@ class ProductController extends Controller
         //This is to show review details such as author, title, review content, rating etc for each product, order by creation date, 5 reviews per page
         $reviews = $product->users()->orderBy('pivot_created_at', 'desc')->Paginate(5);
         // dd($reviews);
-        return view('products.show', ['product' => $product, 'reviews' => $reviews]);
+        
+        $productPhotos = ProductsPhoto::where('product_id', '=', $id)->get();
+        // dd($productPhotos);
+        
+        return view('products.show', ['product' => $product, 'reviews' => $reviews, 'productPhotos' => $productPhotos]);
     }
 
     
