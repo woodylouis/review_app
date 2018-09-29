@@ -62,7 +62,7 @@ class ReviewTableSeeder extends Seeder
             'title' => 'Happy with my iPhone Xs MAX',
             'review_detail' => 'Have been really happy with the iPhone X over the last 12 months. Took me a while to get used to a few upgrades but that was more of software upgrades.',
             'rating' => 5,
-            'user_id' => 2,
+            'user_id' => 1,
             'product_id' => 1, 
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
         ]);
@@ -73,6 +73,42 @@ class ReviewTableSeeder extends Seeder
             'rating' => 2,
             'user_id' => 2,
             'product_id' => 6, 
+            'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
+        ]);
+        
+        DB::table('reviews')->insert([
+            'title' => 'Happy with my iPhone Xs MAX',
+            'review_detail' => 'Have been really happy with the iPhone X over the last 12 months. Took me a while to get used to a few upgrades but that was more of software upgrades.',
+            'rating' => 5,
+            'user_id' => 2,
+            'product_id' => 1, 
+            'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
+        ]);
+        
+        DB::table('reviews')->insert([
+            'title' => 'Happy with my iPhone Xs MAX',
+            'review_detail' => 'Have been really happy with the iPhone X over the last 12 months. Took me a while to get used to a few upgrades but that was more of software upgrades.',
+            'rating' => 5,
+            'user_id' => 3,
+            'product_id' => 1, 
+            'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
+        ]);
+        
+        DB::table('reviews')->insert([
+            'title' => 'Happy with my iPhone Xs MAX',
+            'review_detail' => 'Have been really happy with the iPhone X over the last 12 months. Took me a while to get used to a few upgrades but that was more of software upgrades.',
+            'rating' => 5,
+            'user_id' => 4,
+            'product_id' => 1, 
+            'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
+        ]);
+        
+        DB::table('reviews')->insert([
+            'title' => 'Happy with my iPhone Xs MAX',
+            'review_detail' => 'Have been really happy with the iPhone X over the last 12 months. Took me a while to get used to a few upgrades but that was more of software upgrades.',
+            'rating' => 5,
+            'user_id' => 5,
+            'product_id' => 1, 
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
         ]);
         

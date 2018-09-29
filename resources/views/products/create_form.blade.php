@@ -16,7 +16,7 @@
     @endif
     
     <div class="form-group">
-        <form method="POST" action="/product">
+        <form method="POST" action="/product" enctype="multipart/form-data">
         {{csrf_field()}}
         
             <div class="form-group">
@@ -25,11 +25,14 @@
             </div>
             
             <div class="form-group">
-                <label>Price: </label>
-                <input type="text" class="form-control" name="price" placeholder="Price" value="{{old('price')}}">
+                <label>Product photos (can attach more than one)</label>
+                <input type="file" name="photos[]" multiple value="{{old('photos[]')}}"/>
             </div>
-            <!--<label for="formGroupExampleInput2">Description:</label>-->
-            <!--<input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Write Description Here" name="product_description">-->
+            
+            <div class="form-group">
+                <label>Price: </label>
+                <input type="text" class="form-control-file" name="price" placeholder="Price" value="{{old('price')}}">
+            </div>
             
             <div class="form-group">
                 <label>Description: </label>

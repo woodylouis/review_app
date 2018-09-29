@@ -45,6 +45,14 @@
     
     <div id='review'>
         <h2>Review</h2>
+        <form>
+            <select name="users" onchange="showUser(this.value)">
+                <option value="">Sort By:</option>
+                <option value="1">Most Recent Reviewed</option>
+                <option value="2">Highest Rating</option>
+            </select>
+        </form>
+
         @foreach ($reviews as $review)
             <div class="row no-gutters text-left product-review">
                     <div class="col-6 col-md-2 list-unstyled">
@@ -100,9 +108,8 @@
             </div>
         @endforeach
         <!--Pagination-->
-        {{ $reviews->links()}}
-        
-        
+        {!! $reviews->links() !!}
+
         
         @if(Auth::check() && Auth::user())
             <div id="review-form">
@@ -166,4 +173,8 @@
         @endif
         
     </div>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/sortby.js') }}"></script>
 @endsection

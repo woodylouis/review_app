@@ -29,6 +29,7 @@ class ManufacturerController extends Controller
                           ->leftJoin('reviews', 'products.id', '=', 'reviews.product_id')
                           ->groupBy('products.id')
                           ->paginate(5);
+        // dd($products);
         
         
 

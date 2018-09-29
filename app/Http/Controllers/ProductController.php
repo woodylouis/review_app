@@ -11,7 +11,8 @@ use App\User;
 use App\Like;
 use Illuminate\Support\Facades\Auth;
 use DB;
-
+use App\Http\Requests\UploadRequest;
+use App\ProductsPhoto;
 class ProductController extends Controller
 {
     //Guests can see the product list, details, and even add a product
@@ -52,7 +53,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UploadRequest $request)
     {
         //
         
@@ -68,8 +69,22 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->manufacturer_id = $request->manufacturer;
         $product->save();
+        
+        //This is function for uploading multiple photo for a product. Refer to app/Http/Requests/UploadRequest.php
+        foreach ($request->photos as $photo) {
+            $filename = $photo->store('photos');
+            ProductsPhoto::create([
+                'product_id' => $product->id,
+                'user_id' => Auth::user()->id,
+                'filename' => $filename
+            ]);
+        }
+        // return 'Upload successful!';
         return redirect("/product/$product->id");
     }
+    
+    
+    
 
     /**
      * Display the specified resource.
@@ -81,15 +96,13 @@ class ProductController extends Controller
     {
         //This is to show products' details such as product name, price, place of origin, manufacturers etc
         $product = Product::find($id);
-        
         //This is to show review details such as author, title, review content, rating etc for each product, order by creation date, 5 reviews per page
-        $reviews = $product->users()->orderBy('pivot_created_at', 'desc')->groupBy('pivot_id')->paginate(5);
-        
-        
-        
-        
+        $reviews = $product->users()->orderBy('pivot_created_at', 'desc')->Paginate(5);
+        // dd($reviews);
         return view('products.show', ['product' => $product, 'reviews' => $reviews]);
     }
+
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -187,4 +200,6 @@ class ProductController extends Controller
         
         return view('products.sortByRating', ['products' => $products]);
     }
+    
+    
 }
