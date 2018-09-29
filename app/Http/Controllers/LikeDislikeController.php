@@ -23,34 +23,55 @@ class LikeDislikeController extends Controller
             "review_id" => "required | exists:reviews,id",
         ]);
         
+        //To check if the existing vote exists
+        $existing = Like::where('user_id', '=', Auth::user()->id)->where('review_id', '=', $request->review_id) -> exists();
+        // dd($existing);
         
-        $currentUser = Auth::user()->id;
-        $like = new Like();
-        $like->user_id = $currentUser;
-        $currentReview = $like->review_id = $request->review_id;
-        $like = Like::firstOrNew(['review_id' => $currentReview, 'user_id' => $currentUser]);
-        $like->save();
-        $CurrentProductId = Review::find($currentReview)->product_id;
+        if (!$existing) {
+            Auth::user()->likes()->create([
+                'review_id' => $request['review_id'],
+            ]);
+            
+            session()->flash('success', 'You like this post!!');
+            
+        } else {
+            session()->flash('warning', 'You have voted this before');
+        }
+
+        // $review_id = request('review_id');
+        // $count = Like::where('review_id', '=', $review_id)->count();
+        // dd($count);
+        return redirect()->back();
         
-        return redirect("/product/$CurrentProductId");
     }
 
     public function storeDislike(Request $request)
     {
-        // $this->validate($request,[
-        //     "review_id" => "required | exists:reviews,id",
-        // ]);
         
+        $this->validate($request,[
+            "review_id" => "required | exists:reviews,id",
+        ]);
         
-        $currentUser = Auth::user()->id;
-        $dislike = new Dislike();
-        $dislike->user_id = $currentUser;
-        $currentReview = $dislike->review_id = $request->review_id;
-        $dislike = Dislike::firstOrNew(['review_id' => $currentReview, 'user_id' => $currentUser]);
-        $dislike->save();
-        $CurrentProductId = Review::find($currentReview)->product_id;
+        //To check if the existing vote exists
+        $existing = Dislike::where('user_id', '=', Auth::user()->id)->where('review_id', '=', $request->review_id) -> exists();
+        // dd($existing);
         
-        return redirect("/product/$CurrentProductId");
+        if (!$existing) {
+            Auth::user()->dislikes()->create([
+                'review_id' => $request['review_id'],
+            ]);
+            
+            session()->flash('success', "You don't like this post :(");
+            
+        } else {
+            session()->flash('warning', 'You have voted this before');
+        }
+
+        // $review_id = request('review_id');
+        // $count = Like::where('review_id', '=', $review_id)->count();
+        // dd($count);
+        return redirect()->back();
         
     }
+
 }

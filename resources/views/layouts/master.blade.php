@@ -16,6 +16,7 @@
       <link rel="stylesheet" href="{{secure_asset('css/user.css')}}">
       <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
       <link href='https://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet'>
+      @yield('styles')
     </head>
     
     
@@ -45,6 +46,8 @@
       <script type="text/javascript" src="https://www.draw.io/js/viewer.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="{{ asset('js/app.js') }}"></script>
+      @yield('scripts')
       </div>
       
       <footer class="footer bg font-small">

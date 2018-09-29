@@ -18,9 +18,14 @@ class Review extends Model
        return  $this->belongsTo('App\Product','product_id');
     }
     
+    // function likes() {
+    //     return $this->hasMany('App\Like', 'review_id');
+    // }
+    
     function likes() {
-        return $this->hasMany('App\Like', 'review_id');
+        return $this->hasMany(Like::class);
     }
+    
     
     function dislikes() {
         return $this->hasMany('App\Dislike', 'review_id');

@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use app\Review;
 class Product extends Model
 {
     
@@ -22,4 +22,7 @@ class Product extends Model
         return $this -> belongsToMany('App\User', 'reviews')->withPivot('id')->withPivot('rating')->withPivot('title')->withPivot('review_detail')->withTimestamps();
     }
 
+    // function reviews() {
+    //     return $this -> belongsToMany('App\Review', 'likes')->withPivot('review_id')->withTimestamps();
+    // }
 }

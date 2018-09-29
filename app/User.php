@@ -44,11 +44,11 @@ class User extends Authenticatable
     
     
     function likes() {
-        return $this->hasMany('App\Like', 'review_id');
+        return $this->hasMany(Like::class);
     }
     
     function dislikes() {
-        return $this->hasMany('App\Dislike', 'review_id');
+        return $this->hasMany(Dislike::class);
     }
     
     public function isAdmin()

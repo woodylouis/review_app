@@ -48,7 +48,7 @@
         @foreach ($reviews as $review)
             <div class="row no-gutters text-left product-review">
                     <div class="col-6 col-md-2 list-unstyled">
-                        <li><a href='#'>{{$review->name}}</a></li>
+                        <li><a href="{{ route('user.show', $review->pivot->user_id )}}">{{$review->name}}</a></li>
                     </div>
                     <div class="col-12 col-sm-10 col-md-10 list-unstyled">
                         <li class='title'>{{$review -> pivot -> title}}</li>
@@ -62,14 +62,15 @@
                                         Like
                                     </button>
                             </form>
+                            
                         </div>
                         
                         <div class="d-inline-block" data-placement="top" title="Disike this Review">
                             <form method="POST" action="/dislike">
                                 {{csrf_field()}}
-                                <button type="submit" class='like-dislike mt-3 bg text-light' value="{{$review -> pivot -> id}}" name="review_id">
-                                    Disike
-                                </button>
+                                    <button type="submit" class='like-dislike mt-3 bg text-light' value="{{$review -> pivot -> id}}" name="review_id">
+                                        Disike 
+                                    </button>
                             </form>
                         </div>
                         

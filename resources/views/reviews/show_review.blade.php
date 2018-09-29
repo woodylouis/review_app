@@ -10,4 +10,12 @@
   </span>
   <span class="content">{{ $review->title }}</span>
   <span class="content">{{ $review->review_detail }}</span>
+  
+  @can('destroy', $review)
+      <form action="{{ route('review.destroy', $review->id) }}" method="POST">
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
+        <button type="submit" class="btn btn-sm btn-danger status-delete-btn">删除</button>
+      </form>
+  @endcan
 </li>

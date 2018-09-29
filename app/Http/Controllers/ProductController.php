@@ -83,30 +83,12 @@ class ProductController extends Controller
         $product = Product::find($id);
         
         //This is to show review details such as author, title, review content, rating etc for each product, order by creation date, 5 reviews per page
-        $reviews = $product->users()->orderBy('pivot_created_at', 'desc')->paginate(5);
-        
-        // $reviewsForCurrentProduct = Review::where('product_id', $id)->get();
-
-        // foreach($reviewsForCurrentProduct as $reviewForCurrentProduct) {
-        //     $reviewId = $reviewForCurrentProduct->id;
-        //     $countForEachReview = Like::where('review_id', $reviewId)->count();
-        //     // dd($countForEachReview);
-        // }
-    
-        // $re
-        
-        $reviewss = Review::where('product_id', $id)->get();
-        
-        foreach($reviewss as $review) {
-            $review_id = $review->id;
-            
-        }
-        
-        $likes = Like::where('review_id', $review_id)->get();
-        // dd($likes);
+        $reviews = $product->users()->orderBy('pivot_created_at', 'desc')->groupBy('pivot_id')->paginate(5);
         
         
-        return view('products.show', ['product' => $product, 'reviews' => $reviews, 'likes' => $likes]);
+        
+        
+        return view('products.show', ['product' => $product, 'reviews' => $reviews]);
     }
 
     /**

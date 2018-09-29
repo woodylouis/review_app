@@ -15,7 +15,7 @@ use App\User;
 */
 
 Route::resource('product', 'ProductController');
-Route::resource('manufacturer', 'ManufacturerController', ['only' => ['index', 'show', 'store', 'destroy']]);
+Route::resource('manufacturer', 'ManufacturerController');
 Route::resource('review', 'ReviewController');
 Route::resource('user', 'UserController');
 
