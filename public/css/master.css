@@ -302,3 +302,7 @@ blockquote, .blockquote {
     margin-bottom: 30px;
 
 }
+
+.product-pics {
+    max-height: 250px
+}
