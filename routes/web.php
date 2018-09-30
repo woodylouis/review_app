@@ -19,6 +19,10 @@ Route::resource('manufacturer', 'ManufacturerController');
 Route::resource('review', 'ReviewController');
 Route::resource('user', 'UserController');
 
+Route::get('/product/{id}/showMostRecentReviwed', 'ProductController@showMostRecentReviwed');
+Route::get('/product/{id}/showByTheHighestRating', 'ProductController@showByTheHighestRating');
+
+
 Route::get('/user/{user}/followings', 'UserController@followings')->name('user.followings');
 Route::get('/user/{user}/followers', 'UserController@followers')->name('user.followers');
 

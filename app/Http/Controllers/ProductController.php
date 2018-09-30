@@ -103,7 +103,7 @@ class ProductController extends Controller
         //This is to show products' details such as product name, price, place of origin, manufacturers etc
         $product = Product::find($id);
         //This is to show review details such as author, title, review content, rating etc for each product, order by creation date, 5 reviews per page
-        $reviews = $product->users()->orderBy('pivot_created_at', 'desc')->Paginate(5);
+        $reviews = $product->users()->Paginate(5);
         // dd($reviews);
         
         $productPhotos = ProductsPhoto::where('product_id', '=', $id)->get();
@@ -111,7 +111,35 @@ class ProductController extends Controller
         
         return view('products.show', ['product' => $product, 'reviews' => $reviews, 'productPhotos' => $productPhotos]);
     }
+    
+    public function showMostRecentReviwed($id)
+    {
+        //This is to show products' details such as product name, price, place of origin, manufacturers etc
+        $product = Product::find($id);
+        //This is to show review details such as author, title, review content, rating etc for each product, order by creation date, 5 reviews per page
+        $reviews = $product->users()->orderBy('pivot_created_at', 'desc')->Paginate(5);
+        // dd($reviews);
+        
+        $productPhotos = ProductsPhoto::where('product_id', '=', $id)->get();
+        // dd($productPhotos);
+        
+        return view('products.sortByMostRecentReviewed', ['product' => $product, 'reviews' => $reviews, 'productPhotos' => $productPhotos]);
+    }
 
+    public function showByTheHighestRating($id)
+    {
+        //This is to show products' details such as product name, price, place of origin, manufacturers etc
+        $product = Product::find($id);
+        //This is to show review details such as author, title, review content, rating etc for each product, order by creation date, 5 reviews per page
+        $reviews = $product->users()->orderBy('pivot_rating', 'desc')->Paginate(5);
+        // dd($reviews);
+        
+        $productPhotos = ProductsPhoto::where('product_id', '=', $id)->get();
+        // dd($productPhotos);
+        
+        return view('products.sortByPerProductReviewRating', ['product' => $product, 'reviews' => $reviews, 'productPhotos' => $productPhotos]);
+    }
+    
     
 
     /**
