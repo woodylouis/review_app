@@ -44,6 +44,7 @@ class ProductController extends Controller
     public function create()
     {
         //
+
         return view('products.create_form')->with('manufacturers', Manufacturer::all());
     }
 
@@ -72,16 +73,19 @@ class ProductController extends Controller
         $product->manufacturer_id = $request->manufacturer;
         $product->save();
         
+
         //This is function for uploading multiple photo for a product. Refer to app/Http/Requests/UploadRequest.php
-        foreach ($request->photos as $photo) {
-            $filename = $photo->store('photos');
-            ProductsPhoto::create([
-                'product_id' => $product->id,
-                'user_id' => Auth::user()->id,
-                'filename' => $filename
-            ]);
+        if (Auth::check() && Auth::user()) {
+            foreach ($request->photos as $photo) {
+                $filename = $photo->store('photos');
+                ProductsPhoto::create([
+                    'product_id' => $product->id,
+                    'user_name' => Auth::user()->name,
+                    'filename' => $filename,
+                ]);
+            }
         }
-        // return 'Upload successful!';
+        session()->flash('success', 'Product has been added!');
         return redirect("/product/$product->id");
     }
     
@@ -138,7 +142,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UploadRequest $request, $id)
     {
         //
         
@@ -149,12 +153,28 @@ class ProductController extends Controller
             'manufacturer' =>'exists:manufacturers,id'
         ]);
         
+        
+        if (Auth::user()->isAdmin()) {
         $product = Product::find($id);
         $product->product_name = $request->product_name;
         $product->price = $request->price;
         $product->product_description = $request->product_description;
         $product->manufacturer_id = $request->manufacturer;
         $product->save();
+        
+        //This is function for uploading multiple photo for a product. Refer to app/Http/Requests/UploadRequest.php
+    
+        foreach ($request->photos as $photo) {
+            $filename = $photo->store('photos');
+            ProductsPhoto::create([
+                'product_id' => $product->id,
+                'user_name' => Auth::user()->name,
+                'filename' => $filename,
+            ]);
+            }
+        }
+        
+        
         return redirect("/product/$product->id");
     }
 

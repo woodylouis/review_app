@@ -21,12 +21,7 @@
         
             <div class="form-group">
                 <label>Product Name:</label>
-                <input type="text" class="form-control" placeholder="Write Product Name Here" name="product_name" value="{{old('product_name')}}" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Product photos (can attach more than one)</label>
-                <input type="file" name="photos[]" multiple value="{{old('photos[]')}}"/>
+                <input type="text" class="form-control" placeholder="Write Product Name Here" name="product_name" value="{{old('product_name')}}" required autofocus>
             </div>
             
             <div class="form-group">
@@ -38,6 +33,18 @@
                 <label>Description: </label>
                 <textarea class="form-control" placeholder="Write Description Here" rows="3" name="product_description" required> {{ old('product_description') }}</textarea>
             </div>
+            
+            @if(Auth::check() && Auth::user())
+                <div class="form-group">
+                    <label>Product photos (can attach more than one)</label>
+                    <input type="file" name="photos[]" multiple value="{{old('photos[]')}}"/>
+                </div>
+            @elseif(Auth::guest())
+                <div class="form-group">
+                    <label>Product photos (can attach more than one)</label>
+                    <div><a href='/login'>Login</a></div>
+                </div>
+            @endif
 
             <div class="form-group">
                 <label>Manufacturers</label>
@@ -55,22 +62,3 @@
     </div>
 @endsection
 
-@section('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
-@stop
-
-@section('scripts')
-    <script type="text/javascript"  src="{{ asset('js/module.js') }}"></script>
-    <script type="text/javascript"  src="{{ asset('js/hotkeys.js') }}"></script>
-    <script type="text/javascript"  src="{{ asset('js/uploader.js') }}"></script>
-    <script type="text/javascript"  src="{{ asset('js/simditor.js') }}"></script>
-
-    <script>
-    $(document).ready(function(){
-        var editor = new Simditor({
-            textarea: $('#editor'),
-        });
-    });
-    </script>
-
-@stop

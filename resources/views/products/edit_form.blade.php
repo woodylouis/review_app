@@ -16,14 +16,21 @@
         </div>
     @endif
     
+    
     <div class="form-group">
-        <form method="POST" action="/product/{{$product->id}}">
+        <form method="POST" action="/product/{{$product->id}}" enctype="multipart/form-data">
         {{csrf_field()}}
         {{ method_field('PUT') }}
             <label>Name:</label>
             <input type="text" name="product_name" class="form-control" value="{{$product->product_name, old('product_name')}}"><br>
             <label>Price:</label>
             <input type="text" name="price" class="form-control" value="{{$product->price ,old('product_name')}}"><br>
+            
+            <div class="form-group">
+                    <label>Product photos (can attach more than one)</label>
+                    <input type="file" name="photos[]" multiple value="{{old('photos[]')}}"/>
+            </div>
+            
             <label>Manufacturer:</label>
             <select name="manufacturer" class="form-control">
             @foreach ($manufacturers as $manufacturer)

@@ -38,7 +38,7 @@ class User extends Authenticatable
         return $this -> belongsToMany('App\Product', 'reviews')->withPivot('rating')->withPivot('title')->withPivot('review_detail')->withTimestamps();
     }
     
-    function photos() {
+    function productsPhotos() {
         return $this -> hasMany(ProductsPhoto::class);
     }
     
