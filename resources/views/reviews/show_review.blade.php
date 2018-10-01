@@ -15,7 +15,7 @@
       <form action="{{ route('review.destroy', $review->id) }}" method="POST">
         {{ csrf_field() }}
         {{ method_field('DELETE') }}
-        <button type="submit" class="btn btn-sm btn-danger status-delete-btn">删除</button>
+        <button type="submit" class="btn btn-sm btn-danger status-delete-btn">Delete</button>
       </form>
   @endcan
 </li>
