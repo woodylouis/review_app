@@ -21,11 +21,14 @@ class UploadRequest extends FormRequest
      *
      * @return array
      */
+     
     public function rules()
     {
+        
         $rules = [
             'product_name' => 'required',
         ];
+        //picture upload validation
         $photos = count($this->input('photos'));
         foreach(range(0, $photos) as $index) {
             $rules['photos.' . $index] = 'image|mimes:jpeg,bmp,png|max:2000';

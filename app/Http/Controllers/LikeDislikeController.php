@@ -69,7 +69,6 @@ class LikeDislikeController extends Controller
 
         // $review_id = request('review_id');
         // $count = Like::where('review_id', '=', $review_id)->count();
-        // dd($count);
         return redirect()->back();
         
     }
