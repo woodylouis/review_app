@@ -157,10 +157,10 @@ class ProductController extends Controller
             return view('products.edit_form') -> with('product', $product) -> with('manufacturers', Manufacturer::all());
         } else {
             
-            echo "<h2 style='color:tomato;'>You don't have right to edit the product. Redirect to home page in 5 seconds......</h2>";
-            header( "refresh:5;url=/product/$id" );
+            session()->flash('danger', 'You do not have right to edit the product.');
+             
         }
-        
+        return redirect()->back();
     }
 
     /**

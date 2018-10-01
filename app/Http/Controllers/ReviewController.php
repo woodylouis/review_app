@@ -101,9 +101,9 @@ class ReviewController extends Controller
         $eligibleUsers = (Auth::check() && Auth::user()->isAdmin() | (Auth::check() && (Auth::user()->id == $author)));
         //Only admin can edit all review and only the authors can edit their own reviews but guests and other users can't
         if(!$eligibleUsers) {
-            // session()->flash('warning', 'You have not right to edit this product review');
-            echo "<h2 style='color:tomato;'>You don't have right to edit this product review. Redirect to home page in 5 seconds......</h2>";
-            header( "refresh:5;url=/product/$product->id" );
+            session()->flash('danger', 'You have not right to edit this product review');
+            return redirect()->back();
+            
         } elseif($eligibleUsers) {
             
             return view('reviews.edit_form', ['review' => $review, 'product' => $product]);

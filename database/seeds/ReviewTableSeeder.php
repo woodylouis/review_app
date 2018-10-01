@@ -16,7 +16,7 @@ class ReviewTableSeeder extends Seeder
             'title' => 'Great iphone xs MAX, worth the switch from Samsung S8+',
             'review_detail' => 'Good to have a wider key pad again, unrestricted by the roll off edges of the S8+ which seemed like wasted screen space and lacking functionality.',
             'rating' => 5,
-            'user_id' => 1,
+            'user_id' => 7,
             'product_id' => 1,
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
         ]);
@@ -106,11 +106,37 @@ class ReviewTableSeeder extends Seeder
         DB::table('reviews')->insert([
             'title' => 'Happy with my iPhone Xs MAX',
             'review_detail' => 'Have been really happy with the iPhone X over the last 12 months. Took me a while to get used to a few upgrades but that was more of software upgrades.',
-            'rating' => 5,
+            'rating' => 4,
             'user_id' => 5,
             'product_id' => 1, 
             'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
         ]);
         
+        DB::table('reviews')->insert([
+            'title' => 'Happy with my iPhone Xs MAX',
+            'review_detail' => 'Have been really happy with the iPhone X over the last 12 months. Took me a while to get used to a few upgrades but that was more of software upgrades.',
+            'rating' => 3,
+            'user_id' => 6,
+            'product_id' => 1, 
+            'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
+        ]);
+        
+        DB::table('reviews')->insert([
+            'title' => 'Happy with my iPhone Xs MAX',
+            'review_detail' => 'Have been really happy with the iPhone X over the last 12 months. Took me a while to get used to a few upgrades but that was more of software upgrades.',
+            'rating' => 1,
+            'user_id' => 8,
+            'product_id' => 1, 
+            'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
+        ]);
+        
+        DB::table('reviews')->insert([
+            'title' => 'Happy with my iPhone Xs MAX',
+            'review_detail' => 'Have been really happy with the iPhone X over the last 12 months. Took me a while to get used to a few upgrades but that was more of software upgrades.',
+            'rating' => 3,
+            'user_id' => 9,
+            'product_id' => 1, 
+            'created_at' => \DB::raw('CURRENT_TIMESTAMP'),
+        ]);
     }
 }

@@ -47,9 +47,10 @@ class ManufacturerController extends Controller
             return view('manufacturers.create_form')->with('manufacturers', Manufacturer::all())->with('countries', Country::all());
         } else {
             
-            echo "<h2 style='color:tomato;'>You don't have right to add manufacturers. Redirect to home page in 5 seconds......</h2>";
-            header( "refresh:5;url=/" );
+            session()->flash('danger', 'You do not have right to add a manufacturer.');
+             
         }
+        return redirect()->back();
     }
 
     /**
